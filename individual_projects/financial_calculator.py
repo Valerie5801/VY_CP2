@@ -1,5 +1,4 @@
 #VY 2nd Financial Calculator
-import math #import math here
 
 #Function for finding what type of calculator the user wants to use
 def choose_function():
@@ -91,13 +90,21 @@ def sales_price(org_cost):
     #Ask the discount as a percentage
     discount = input("What's the discount on the item?(as an number): ")
     #Subtract the discount from 100. Then use this number as the percentage and multiply it by the original cost to get the discounted price.
+    percentage = (100 - float(discount)) * 5
+    final_cost = percentage * org_cost
     #Print out how much the item costs with the discount.
+    print(f"The item now costs ${final_cost:.2f}")
 
 #Tip calculator with a parameter of bill
+def tip_calc(bill):
     #Ask them how much is the tip as a percentage.
+    tip_percent = float(input("What percent of a tip are you giving?: "))
     #Divide this number by 100 and then multiply this number by the bill. However, set this new value to a new variable.
+    tip_amount = (tip_percent/100) * bill
     #Finally, add the original bill to the tip.
+    total = bill + tip_amount
     #Print out the tip amount and the total.
+    print(f"The tip amount is ${tip_amount:.2f} and the total is ${total:.2f}.")
 
 
 #Greet the user and start a while Loop (so the user can do as many calculations as they want)
