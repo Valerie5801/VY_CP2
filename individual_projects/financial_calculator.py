@@ -71,17 +71,25 @@ def compound_interest(start_amount):
     #ask for their interest rate percent as a whole number/integer
     interest_rate = input("What is your interest rate percentage?(as an integer): ")
     #Ask their years spent compounding
-    #yeah figure this out later figure out how to calculate this
+    years_spent = input("Years spent compounding?: ")
+    #use a for loop to loop for how many years they're going to spend compounding.
+    for year in range(int(years_spent)):
+        interest = float(interest_rate) * float(start_amount)
+        start_amount += interest
     #Print out the money they will have after the time the user typed in.
+    print(f"At the end of {years_spent} years, you will have ${start_amount:.2f}.")
 
 #Budget Allocator calculator with a parameter of monthly income
+#def budget_allocator(month_income):
     #Ask how many budget categories they have
     #Let them type in as many categories as they say they have. (the names). 
     #Go through and ask what percent (as an integer) they spend on each cateogry (use a loop. This part will most likely be the inner function)
     #Using the percentages and their monthly income, print out each category and how much they spend on each.
 
 #Sales Price calculator with a parameter of original cost
+def sales_price(org_cost):
     #Ask the discount as a percentage
+    discount = input("What's the discount on the item?(as an number): ")
     #Subtract the discount from 100. Then use this number as the percentage and multiply it by the original cost to get the discounted price.
     #Print out how much the item costs with the discount.
 
