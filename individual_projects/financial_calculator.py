@@ -79,11 +79,28 @@ def compound_interest(start_amount):
     print(f"At the end of {years_spent} years, you will have ${start_amount:.2f}.")
 
 #Budget Allocator calculator with a parameter of monthly income
-#def budget_allocator(month_income):
+def budget_allocator(month_income):
+    #make an empty list for the categories
+    categories = []
     #Ask how many budget categories they have
+    category_amount = int(input("How many budget categories do you have?: "))
     #Let them type in as many categories as they say they have. (the names). 
-    #Go through and ask what percent (as an integer) they spend on each cateogry (use a loop. This part will most likely be the inner function)
+    for category in range(int(category_amount)):
+        cat_num = 1
+        add_category = input(f"Category {cat_num}: ")
+        categories.append(add_category)
+        cat_num += 1
+    #Go through and ask what percent (as an integer) they spend on each category (use a loop. This part will most likely be the inner function)
+    def ask_percent():
+        percents = []
+        for category in categories:
+            percent_category = float(input(f"What percent is your {category}?: "))
+            percents.append(percent_category)
+        return percents
+    cat_percents = ask_percent()
     #Using the percentages and their monthly income, print out each category and how much they spend on each.
+    for category in range(cat_percents):
+        print(f"{categories[category]} is ${cat_percents[category]:.2f}.")
 
 #Sales Price calculator with a parameter of original cost
 def sales_price(org_cost):
@@ -112,6 +129,8 @@ while True:
     #Run the function for finding what calculator the user wants to use.
     user_choice = choose_function()
     #Run the function for the calculator that the user chose.
+    if user_choice == "1":
+        
     #Ask the user if they want to do another calculation
     #If the user wants to leave, say goodbye and break out of the while loop
     #If not, do another loop.
