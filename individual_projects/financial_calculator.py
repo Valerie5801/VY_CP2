@@ -130,7 +130,15 @@ while True:
     user_choice = choose_function()
     #Run the function for the calculator that the user chose.
     if user_choice == "1":
-        
+        savings_time(get_money)
+    elif user_choice == "2":
+        compound_interest(get_money)
+    elif user_choice == "3":
+        budget_allocator(get_money)
+    elif user_choice == "4":
+        sales_price(get_money)
+    elif user_choice == "5":
+        tip_calc(get_money)
     #Ask the user if they want to do another calculation
     #If the user wants to leave, say goodbye and break out of the while loop
     #If not, do another loop.
