@@ -23,22 +23,27 @@ def get_money(user_calc):
     while True:
         #If it's savings time calculator, ask what amount they are saving to.
         if user_calc == "1":
+            print("Savings Time Calculator:")
             user_money = input("What amount are you saving to?: ")
             break
         #If it's compound interest, ask their starting amount.
         elif user_calc == "2":
+            print("Compound Interest Calculator:")
             user_money = input("What is your starting amount?: ")
             break
         #If it's budget allocator, ask their monthly income.
         elif user_calc == "3":
+            print("Budget Allocator:")
             user_money = input("What is your monthly income?: ")
             break
         #If it's sales price, ask the original cost of the item.
         elif user_calc == "4":
+            print("Sales Price Calculator:")
             user_money = input("What is the original cost of the item?: ")
             break
         #If it's tip calculator, ask for the value of the bill.
         elif user_calc == "5":
+            print("Tip Calculator:")
             user_money = input("What is the cost of the bill?: ")
             break
 
@@ -55,7 +60,6 @@ def get_money(user_calc):
 
 #Make one function for the Savings time Calculator with a parameter of goal_money
 def savings_time(goal_money):
-    print("Savings Time Calculator:")
     #Ask how often they are contributing (set this via numbers, such as 1 corresponds to weekly and 2 corresponds to monthly. Tell the user this/show the options to the user.)
     contri_time = input("How often are you contributing?(1. Weekly, 2. Monthly): ")
     if contri_time == "1":
@@ -79,7 +83,7 @@ def compound_interest(start_amount):
     years_spent = input("Years spent compounding?: ")
     #use a for loop to loop for how many years they're going to spend compounding.
     for year in range(int(years_spent)):
-        interest = float(interest_rate) * float(start_amount)
+        interest = (float(interest_rate)/100) * float(start_amount)
         start_amount += interest
     #Print out the money they will have after the time the user typed in.
     print(f"At the end of {years_spent} years, you will have ${start_amount:.2f}.")
