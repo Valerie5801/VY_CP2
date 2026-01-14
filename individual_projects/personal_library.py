@@ -9,6 +9,7 @@ existing_authors = ["Jimmy Settle", "Jules Verne"]
 #Function named view_library for viewing the library
 def view_library():
     #Use a for loop to loop through the list, existing_books, and use the index number to print the authors out as well.. Put each one on a new line for good formatting.
+    print("Here is what currently is in your library:")
     for book in range(existing_books):
         print(f"{existing_books[book]} by {existing_authors[book]}\n")
 
@@ -102,15 +103,30 @@ def main_menu():
         print("1. View \n2. Add \n3. Remove \n4. Search \n5. Exit")
         user_action = input("Type what you want to do: ")
         #If they chose 1, run view_library
-        
+        if user_action == "1":
+            view_library()
         #If they chose 2, run add_item
+        elif user_action == "2":
+            add_item()
         #If they chose 3, run remove_item
+        elif user_action == "3":
+            remove_item()
         #If they chose 4, run search_item
+        elif user_action == "4":
+            search_item()
         #If they chose 5, break out of the while loop so the function will end.
+        elif user_action == "5":
+            break
 
 #Greet the User and tell them that this is a peresonal library for books
+print("This is your personal library to keep track and store books.")
 #Explain what it is and how to use this personal library
+print("You can either view your library, add a book, remove a book, search for a book, or exit. (Exiting this program will erase all data.)")
 
-#Use a for loop to print out existing_books and existing_authors
+#Print out existing_books and existing_authors
+view_library()
+
 #Run main_menu
+main_menu()
 #Thank the user and say goodbye (this should only show when the user chooses to end the function)
+print("Goodbye.")
