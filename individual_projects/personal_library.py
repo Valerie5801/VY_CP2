@@ -16,7 +16,7 @@ def view_library():
 #Function named add_item for adding a book to the library
 def add_item():
     #Ask the user what book they want to add by title.
-    add_title = input('Title: ')
+    add_title = input('Title of the book you want to add: ')
     #Ask the user who wrote the book (the author).
     add_author = input("Author's full name: ")
     #Add the book to existing_books and add the author to the existing_authors
