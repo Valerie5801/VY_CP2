@@ -5,6 +5,8 @@ import random
 #Make four lists, all with the ASCII values of each category. This is for easy access.
 upper_codes = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
 lower_codes = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122]
+number_codes = []
+special_codes = []
 
 #Make a function named get_requirements that gets the password requirements that the user wants:
 def get_requirements():
@@ -34,9 +36,15 @@ def get_characters(upper_requir, lower_requir, number_requir, special_requir):
         for code in upper_codes:
             available_characters.append(code)
     #If the user wants lowercase letters:
+    if lower_requir == "y":
         #Add numbers 97 to 122 to available_characters
+        for code in lower_codes:
+            available_characters.append(code)
     #If the user wants numbers:
+    if number_requir == "y":
         #Add numbers 48 to 57 to available_characters
+        for code in nu:
+            available_characters.append(code)
     #If the user wants special characters:
         #Add numbers 33 to 47 to available_characters
 
