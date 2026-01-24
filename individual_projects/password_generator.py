@@ -95,7 +95,7 @@ def main_menu():
         #Ask the user what they want to do
         print("\nYou can: \n1. Generate Codes \n2. Exit")
         user_action = input("What would you like to do?: ")
-        if user_action == "1":
+        if user_action.strip() == "1":
             #Run get_requirements and set each returned value to a new variable(variables length_check, upper_check, lower_check, number_check, special_check).
             length_check, upper_check, lower_check, number_check, special_check = get_requirements()
             #Run get_characters with parameters upper_check, lower_check, number_check, and special_check, and set this to useable_characters
@@ -108,7 +108,7 @@ def main_menu():
             for password in final_passwords:
                 print(f"{counter}. {password}")
                 counter += 1
-        elif user_action == "2":
+        elif user_action.strip() == "2":
             break
         else:
             print("That's not an option. Please try again.")
