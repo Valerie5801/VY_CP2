@@ -22,8 +22,10 @@ def get_input(user_choice = "2"):
         check_message = user_message.split()
         for word in check_message:
             full_morse = True
-            if word.isalpha():
+            if word.isalpha() and user_choice == "2":
                 continue
+            elif user_choice == "1" and word.isalpha():
+                    print("You are translating from morse code into english. Please try again.")
             else:
                 for char in user_message:
                     if char not in morse_chars:
@@ -99,7 +101,8 @@ def main_menu():
                 break
 
         #Run the function to get inputs from the user and set it to user_input
-        user_input = get_input(user_choice)
+        if user_choice == "1" or user_choice == "2":
+            user_input = get_input(user_choice)
         match user_choice:
             #If the user wants to translate morse code to english:
             case "1":
