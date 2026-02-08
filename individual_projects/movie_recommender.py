@@ -80,6 +80,7 @@
             #Add it to the dictionary
     #Return the dictionary for movies that met the requirements
 
-#Function that uses all of the helper function filters to 
+#Function that uses all of the helper function filters that has the parameters of the dictionary of movies and the requirements :
+    #
 
 #Function that acts as the main menu:
