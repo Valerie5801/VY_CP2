@@ -47,7 +47,39 @@
             #Put these two numbers into a list with minimum coming first. Then append this list to requirements.
     #Return requirements
 
-#
+#Helper function that filters by genre and has parameters of the dictionary or list of movies and the name of the genre that the user typed in:
+    #Dictionary for the movies that qualify the filter requirements.
+    #for loop that loops through the genres in the movie dictionary:
+        #Check if that value matches the genre that the user chose.
+        #If it does:
+            #Add it to the dictionary
+    #Return the dictionary for movies that met the requirements
 
+#Helper function that filters by directors and has parameters of the dictionary or list of movies and the name of the director that the user typed in:
+    #Dictionary for the movies that qualify the filter requirements.
+    #for loop that loops through the directors in the movie dictionary:
+        #Check if that value matches the director that the user chose.
+        #If it does:
+            #Add it to the dictionary
+    #Return the dictionary for movies that met the requirements
+
+#Helper function that filters by important actors and has parameters of the dictionary or list of movies and the name of the important actor(s) that the user typed in:
+    #Dictionary for the movies that qualify the filter requirements.
+    #for loop that loops through the important actors in the movie dictionary:
+        #Loop here again to make sure all important actors are checked if there are multiple:
+            #Check if that value matches the genre that the user chose.
+            #If it does:
+                #Add it to the dictionary
+    #Return the dictionary for movies that met the requirements
+
+#Helper function that filters by length and has parameters of the dictionary or list of movies and the length that the user typed in:
+    #Dictionary for the movies that qualify the filter requirements.
+    #for loop that loops through the lengths in the movie dictionary:
+        #Check if that value matches the genre that the user chose.
+        #If it does:
+            #Add it to the dictionary
+    #Return the dictionary for movies that met the requirements
+
+#Function that uses all of the helper function filters to 
 
 #Function that acts as the main menu:
