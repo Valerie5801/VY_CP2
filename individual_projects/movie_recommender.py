@@ -1,19 +1,42 @@
 #VY 2nd Movie Recommender
 #import csv here
+import csv
 
 #Function that saves the CSV file:
+def save_csv():
     #try the following:
+    try:
         #open the provided movies list and set the mode to "r" for reading as mov_list:
+        with open("individual_projects/Movies list - Sheet1.csv", mode= "r") as sample:
             #read mov_list and set it to the variable read_list
+            read_list = csv.reader(sample)
             #make a variable that grabs the next value in the CSV reader
+            next_item = next(read_list)
             #make an empty list called "movies"
+            movies = []
             #Use a for loop here to make a dictionary:
+            for line in read_list:
+                movies.append(
+                    {
+                        next_item[0]: line[0],
+                        next_item[1]: line[1],
+                        next_item[2]: line[2],
+                        next_item[3]: line[3],
+                        next_item[4]: line[4],
+                        next_item[5]: line[5]
+                    }
+                )
                 #append the dictionary with the respective information (found using index values)
     #except statement here if the try doesn't work:
+    except:
+        print("The CSV doesn't exist.")
         #show that no movies were found
         #Return None
+        return None
     #else statement:
+    else:
         #Return movies
+        return movies
 
 #Function that gets asks user what filters they want to apply:
     #Print the available filters to apply (and let them know it has to be separated with commas with no spaces.)
