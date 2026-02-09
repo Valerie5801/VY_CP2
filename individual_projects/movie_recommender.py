@@ -1,53 +1,232 @@
 #VY 2nd Movie Recommender
 #import csv here
+import csv
+import time
 
 #Function that saves the CSV file:
+def save_csv():
     #try the following:
+    try:
         #open the provided movies list and set the mode to "r" for reading as mov_list:
+        with open("individual_projects/Movies list - Sheet1.csv", mode= "r") as sample:
             #read mov_list and set it to the variable read_list
+            read_list = csv.reader(sample)
             #make a variable that grabs the next value in the CSV reader
+            next_item = next(read_list)
             #make an empty list called "movies"
+            movies = []
             #Use a for loop here to make a dictionary:
+            for line in read_list:
+                movies.append(
+                    {
+                        next_item[0]: line[0],
+                        next_item[1]: line[1],
+                        next_item[2]: line[2],
+                        next_item[3]: line[3],
+                        next_item[4]: line[4],
+                        next_item[5]: line[5]
+                    }
+                )
                 #append the dictionary with the respective information (found using index values)
     #except statement here if the try doesn't work:
+    except:
+        print("The CSV doesn't exist.")
         #show that no movies were found
         #Return None
+        return None
     #else statement:
+    else:
         #Return movies
+        return movies
 
 #Function that gets asks user what filters they want to apply:
+def get_filters():
     #Print the available filters to apply (and let them know it has to be separated with commas with no spaces.)
+    print("\nYou can filter by: \n1. Genre \n2. Directors \n3. Important Actor \n4. Length")
     #Genre is 1, Director is 2, Actor is 3, Length is 4.
-    #Ask the user what filters they want to apply (via corresponding numbers).
-    #Stupid proof here incase the user doesn't type something that is recognizeable by the program.
+    while True:
+        #Ask the user what filters they want to apply (via corresponding numbers).
+        ask_filters = input("What filters do you want to apply?(separate them with commas like this: 1,2,4): ")
+        ask_filters = ask_filters.replace(" ", "").strip(",")
+        #Stupid proof here incase the user doesn't type something that is recognizeable by the program.
+        for char in ask_filters:
+            if not char.isnumeric():
+                print("Please use only numbers and commas.")
+                continue
+            else:
+                break
+        break
+
     #Return the filters that the user wants to apply
+    return ask_filters
 
 #Function that gets user input with parameter of the filters that the user wants (as numbers 1-4):
+def specific_filters(user_filters = "1,2,3,4"):
     #Make a list named "requirements". This will be used as the list for the filters that should be applied when searching for movies.
+    requirements = []
+    print("")   #space between sections
     #If 1 is in the string of filters that the user wants:
+    if "1" in user_filters:
         #Ask the user for the genre they want and provide an example of how it should be formatted.
+        ask_genre = input("What genre do you want to apply?: ").strip().title()
         #Append this to requirements
+        requirements.append(ask_genre)
+    else:
+        requirements.append(0)
     #If 2 is in the string of filters that the user wants:
+    if "2" in user_filters:
         #Ask the user of the name of the director, at least the first name.
+        ask_director = input("What is the name of the director you are looking for?(you can provide only the first name or the full name): ").title().strip()
         #Append this to requirements
+        requirements.append(ask_director)
+    else:
+        requirements.append(0)
     #If 3 is in the string of filters that the user wants:
+    if "3" in user_filters:
         #Ask for one name of an actor they want to find movies about.
+        ask_actor = input("What is the name of an actor you are looking for?(you can provide only the first name or the full name): ").title().strip()
         #Append this to requirements.
+        requirements.append(ask_actor)
+    else:
+        requirements.append(0)
     #If 4 is in the string of filters that the user wants:
-        #Ask the user if they want to put the direct length of the movie or provide a range of movie lengths
-        #If the user wants to put the direct length of the movie:
-            #Ask the user for how many hours are in the movie
-            #Ask the user for how many minutes are in the movie
-            #Stupid proof it and make sure both values are numerical.
-            #Multiply the hours by two, and add it to the amount of minutes to get the total time.
-            #Append this to requirements
-        #Or if the user wants to provide a range of length movies:
-            #Ask the user for the minimum length in minutes
-            #Ask the user for the maximum length in minutes
-            #Put these two numbers into a list with minimum coming first. Then append this list to requirements.
-    #Return requirements
+    if "4" in user_filters:
+        #Ask the for the minimum and maximum of the movie length range in minutes
+        while True:
+            min_length = input("What's the minimum length you want?(in minutes): ")
+            max_length = input("What's the maximum length you want?(in minutes): ")
+            if not min_length.isnumeric() or not max_length.isnumeric():
+                print("Please give your answer as an integer.")
+            else:
+                requirements.append(int(min_length))
+                requirements.append(int(int(max_length)))
+                break
+    else:
+        requirements.append(0)
+        requirements.append(0)
+        #Return requirements
+    return requirements
 
-#
+#Helper function that filters by genre and has parameters of the dictionary or list of movies and the name of the genre that the user typed in:
+def filter_genre(movie_list, genre_name = ""):
+    #Dictionary for the movies that qualify the filter requirements.
+    meets_require = []
+    #for loop that loops through the genres in the movie list:
+    for movie in movie_list:
+        if movie["Genre"] == genre_name:
+            meets_require.append(movie)
+        #Check if that value matches the genre that the user chose.
+        #If it does:
+            #Add it to the dictionary
+    #Return the dictionary for movies that met the requirements
+    return meets_require
 
+#Helper function that filters by directors and has parameters of the dictionary or list of movies and the name of the director that the user typed in:
+def filter_director(movie_list, director_name = ""):
+    #Dictionary for the movies that qualify the filter requirements.
+    meets_require = []
+    #for loop that loops through the directors in the movie dictionary:
+    for movie in movie_list:
+        if movie["Director"] == director_name:
+            meets_require.append(movie)
+    #Check if that value matches the director that the user chose.
+    #If it does:
+        #Add it to the dictionary
+    #Return the dictionary for movies that met the requirements
+    return meets_require
+
+#Helper function that filters by important actors and has parameters of the dictionary or list of movies and the name of the important actor(s) that the user typed in:
+def filter_actors(movie_list, actor_name = ""):
+    #Dictionary for the movies that qualify the filter requirements.
+    meets_require = []
+    #for loop that loops through the important actors in the movie dictionary:
+    for movie in movie_list:
+        if actor_name in movie["Notable Actors"]:
+            meets_require.append(movie)
+    #Check if that value matches the genre that the user chose.
+    #If it does:
+        #Add it to the dictionary
+    #Return the dictionary for movies that met the requirements
+    return meets_require
+
+#Helper function that filters by length and has parameters of the dictionary or list of movies and the length that the user typed in:
+def filter_length(movie_list, min_length = 0, max_length = 1000):
+    #Dictionary for the movies that qualify the filter requirements.
+    meets_require = []
+    #for loop that loops through the lengths in the movie dictionary:
+    for movie in movie_list:
+        if min_length < int(movie["Length (min)"]) and int(movie["Length (min)"]) < max_length:
+            meets_require.append(movie)
+    #Check if that value matches the genre that the user chose.
+    #If it does:
+        #Add it to the dictionary
+    #Return the dictionary for movies that met the requirements
+    return meets_require
+
+#Function that uses all of the helper function filters that has the parameters of the dictionary of movies and the requirements (both the number one and user's actual filters):
+def all_filters(filter_movies, num_requirements, user_requirements):
+    #If 1 is in num_requirements:
+    if "1" in num_requirements:
+        #Run the filter_genre function using filter_movies and the first index of user_requirements as arguments for it. Set this to filter_movies.
+        filter_movies = filter_genre(filter_movies, user_requirements[0])
+    #If 2 is in num_requirements:
+    if "2" in num_requirements:
+        #Run the filter_director function using filter_movies and the second index of user_requirements as arguments for it. Set this to filter_movies.
+        filter_movies = filter_director(filter_movies, user_requirements[1])
+    #If 3 is in num_requirements:
+    if "3" in num_requirements:
+        #Run the filter_genre function using filter_actors and the third index of user_requirements as arguments for it. Set this to filter_movies.
+        filter_movies = filter_actors(filter_movies, user_requirements[2])
+    #If 4 is in num_requirements:
+    if "4" in num_requirements:
+        #Run the filter_director function using filter_length and the fourth index of user_requirements as arguments for it. Set this to filter_movies.
+        filter_movies = filter_length(filter_movies, user_requirements[3], user_requirements[4])
+    #return filter_movies
+    return filter_movies
+
+#function that prints the movies out in a pretty format with parameter of print_movies:
+def print_nice(print_movies):
+    #for loop here
+    if print_movies:
+        for movie in print_movies:
+            for item in movie:
+                #print out each movie
+                print(f"{item}: {movie[item]}")
+                if item == "Notable Actors":
+                    print("")   #space between each movie
+                    time.sleep(0.15)
+
+    else:
+        print("There was nothing that matched the filters. Try using a different filter or less filters.\n")
 
 #Function that acts as the main menu:
+def main_menu(avail_movies):
+    #While True loop:
+    while True:
+        #Show the user that they can (1) Search for movies (2) See all movies or (3) Exit the program
+        print("You can: \n1. Search for movies by filter \n2. See all movies in this program \n3. Exit program")
+        user_action = input("What do you want to do?: ")
+        #If they chose 1:
+        if user_action == "1":
+            #run get_filters and set it to applied_filters
+            applied_filters = get_filters()
+            #run all_filters with arguments movies, applied_filters, and specific_filters(with argument applied_filters) and set it to filtered_movies
+            filtered_movies = all_filters(avail_movies, applied_filters, specific_filters(applied_filters))
+            #run the function that prints the movies in a pretty format with argument filtered_movies
+            print_nice(filtered_movies)
+        #If they chose 2:
+        if user_action == "2":
+            #run the function that prints the movies in a pretty format with argument movies
+            print_nice(avail_movies)
+        #If they chose 3:
+        if user_action == "3":
+            #break out of the loop and end the function
+            break
+
+#greet the user and explain how this program works
+print("This is a program that lets you filter out movies to show you what might be of interest to you.")
+#run the save_csv function
+#run the main menu function with parameter of the save_csv function
+main_menu(save_csv())
+#thank the user and say goodbye
+print("Goodbye.")
