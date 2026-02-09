@@ -65,18 +65,24 @@ def specific_filters(user_filters = "1,2,3,4"):
         ask_genre = input("What genre do you want to apply?: ").strip().title()
         #Append this to requirements
         requirements.append(ask_genre)
+    else:
+        requirements.append(0)
     #If 2 is in the string of filters that the user wants:
     if "2" in user_filters:
         #Ask the user of the name of the director, at least the first name.
         ask_director = input("What is the name of the director you are looking for?(you can provide only the first name or the full name): ").title().strip()
         #Append this to requirements
         requirements.append(ask_director)
+    else:
+        requirements.append(0)
     #If 3 is in the string of filters that the user wants:
     if "3" in user_filters:
         #Ask for one name of an actor they want to find movies about.
         ask_actor = input("What is the name of an actor you are looking for?(you can provide only the first name or the full name): ").title().strip()
         #Append this to requirements.
         requirements.append(ask_actor)
+    else:
+        requirements.append(0)
     #If 4 is in the string of filters that the user wants:
     if "4" in user_filters:
         #Ask the for the length of the movie in minutes
@@ -87,6 +93,8 @@ def specific_filters(user_filters = "1,2,3,4"):
             else:
                 requirements.append(int(ask_length))
                 break
+    else:
+        requirements.append(0)
         #Return requirements
     return requirements
 
@@ -106,7 +114,7 @@ def filter_genre(movie_list, genre_name = ""):
     return meets_require
 
 #Helper function that filters by directors and has parameters of the dictionary or list of movies and the name of the director that the user typed in:
-def filter_directors(movie_list, director_name = ""):
+def filter_director(movie_list, director_name = ""):
     #Dictionary for the movies that qualify the filter requirements.
     meets_require = []
     #for loop that loops through the directors in the movie dictionary:
@@ -150,7 +158,62 @@ def filter_length(movie_list, length = 0):
     #Return the dictionary for movies that met the requirements
     return meets_require
 
-#Function that uses all of the helper function filters that has the parameters of the dictionary of movies and the requirements:
-    #
+#Function that uses all of the helper function filters that has the parameters of the dictionary of movies and the requirements (both the number one and user's actual filters):
+def all_filters(filter_movies, num_requirements, user_requirements):
+    #If 1 is in num_requirements:
+    if "1" in num_requirements:
+        #Run the filter_genre function using filter_movies and the first index of user_requirements as arguments for it. Set this to filter_movies.
+        filter_movies = filter_genre(filter_movies, user_requirements[1])
+    #If 2 is in num_requirements:
+    if "2" in num_requirements:
+        #Run the filter_director function using filter_movies and the second index of user_requirements as arguments for it. Set this to filter_movies.
+        filter_movies = filter_director(filter_movies, user_requirements[2])
+    #If 3 is in num_requirements:
+    if "3" in num_requirements:
+        #Run the filter_genre function using filter_actors and the third index of user_requirements as arguments for it. Set this to filter_movies.
+        filter_movies = filter_actors(filter_movies, user_requirements[3])
+    #If 4 is in num_requirements:
+    if "4" in num_requirements:
+        #Run the filter_director function using filter_length and the fourth index of user_requirements as arguments for it. Set this to filter_movies.
+        filter_movies = filter_length(filter_movies, user_requirements[4])
+    #return filter_movies
+    return filter_movies
+
+#function that prints the movies out in a pretty format with parameter of print_movies:
+def print_nice(print_movies):
+    #for loop here
+    for movie in print_movies:
+        #print out each movie
+        print(movie)
 
 #Function that acts as the main menu:
+def main_menu(avail_movies):
+    #While True loop:
+    while True:
+        #Show the user that they can (1) Search for movies (2) See all movies or (3) Exit the program
+        print("You can: \n1. Search for movies by filter \n2. See all movies in this program \n3. Exit program")
+        user_action = input("What do you want to do?: ")
+        #If they chose 1:
+        if user_action == "1":
+            #run get_filters and set it to applied_filters
+            applied_filters  = get_filters()
+            #run all_filters with arguments movies, applied_filters, and specific_filters(with argument applied_filters) and set it to filtered_movies
+            filtered_movies = all_filters(avail_movies, applied_filters, specific_filters(applied_filters))
+            #run the function that prints the movies in a pretty format with argument filtered_movies
+            print_nice(filtered_movies)
+        #If they chose 2:
+        if user_action == "2":
+            #run the function that prints the movies in a pretty format with argument movies
+            print_nice(avail_movies)
+        #If they chose 3:
+        if user_action == "3":
+            #break out of the loop and end the function
+            break
+
+#greet the user and explain how this program works
+print("This is a program that lets you filter out movies to show you what might be of interest to you.")
+#run the save_csv function
+#run the main menu function with parameter of the save_csv function
+main_menu(save_csv())
+#thank the user and say goodbye
+print("Goodbye.")
