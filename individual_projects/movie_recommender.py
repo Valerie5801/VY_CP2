@@ -46,9 +46,10 @@ def get_filters():
     while True:
         #Ask the user what filters they want to apply (via corresponding numbers).
         ask_filters = input("What filters do you want to apply?(separate them with commas like this: 1,2,4): ")
+        ask_filters = ask_filters.strip(",")
         #Stupid proof here incase the user doesn't type something that is recognizeable by the program.
-        if not "1" in ask_filters or not "2" in ask_filters or not "3" in ask_filters or not "4" in ask_filters:
-            print("Please use numbers and commas.")
+        if not ask_filters.isnumeric():
+            print("Please use only numbers and commas.")
         else:
             break
 
@@ -163,19 +164,19 @@ def all_filters(filter_movies, num_requirements, user_requirements):
     #If 1 is in num_requirements:
     if "1" in num_requirements:
         #Run the filter_genre function using filter_movies and the first index of user_requirements as arguments for it. Set this to filter_movies.
-        filter_movies = filter_genre(filter_movies, user_requirements[1])
+        filter_movies = filter_genre(filter_movies, user_requirements[0])
     #If 2 is in num_requirements:
     if "2" in num_requirements:
         #Run the filter_director function using filter_movies and the second index of user_requirements as arguments for it. Set this to filter_movies.
-        filter_movies = filter_director(filter_movies, user_requirements[2])
+        filter_movies = filter_director(filter_movies, user_requirements[1])
     #If 3 is in num_requirements:
     if "3" in num_requirements:
         #Run the filter_genre function using filter_actors and the third index of user_requirements as arguments for it. Set this to filter_movies.
-        filter_movies = filter_actors(filter_movies, user_requirements[3])
+        filter_movies = filter_actors(filter_movies, user_requirements[2])
     #If 4 is in num_requirements:
     if "4" in num_requirements:
         #Run the filter_director function using filter_length and the fourth index of user_requirements as arguments for it. Set this to filter_movies.
-        filter_movies = filter_length(filter_movies, user_requirements[4])
+        filter_movies = filter_length(filter_movies, user_requirements[3])
     #return filter_movies
     return filter_movies
 
