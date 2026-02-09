@@ -47,12 +47,15 @@ def get_filters():
     while True:
         #Ask the user what filters they want to apply (via corresponding numbers).
         ask_filters = input("What filters do you want to apply?(separate them with commas like this: 1,2,4): ")
-        ask_filters = ask_filters.strip(",")
+        ask_filters = ask_filters.replace(" ", "").strip(",")
         #Stupid proof here incase the user doesn't type something that is recognizeable by the program.
-        if not ask_filters.isnumeric():
-            print("Please use only numbers and commas.")
-        else:
-            break
+        for char in ask_filters:
+            if not char.isnumeric():
+                print("Please use only numbers and commas.")
+                continue
+            else:
+                break
+        break
 
     #Return the filters that the user wants to apply
     return ask_filters
@@ -88,15 +91,18 @@ def specific_filters(user_filters = "1,2,3,4"):
         requirements.append(0)
     #If 4 is in the string of filters that the user wants:
     if "4" in user_filters:
-        #Ask the for the length of the movie in minutes
+        #Ask the for the minimum and maximum of the movie length range in minutes
         while True:
-            ask_length = input("What's the length that you are looking for?(in minutes): ")
-            if not ask_length.isnumeric():
+            min_length = input("What's the minimum length you want?(in minutes): ")
+            max_length = input("What's the maximum length you want?(in minutes): ")
+            if not min_length.isnumeric() or not max_length.isnumeric():
                 print("Please give your answer as an integer.")
             else:
-                requirements.append(int(ask_length))
+                requirements.append(int(min_length))
+                requirements.append(int(int(max_length)))
                 break
     else:
+        requirements.append(0)
         requirements.append(0)
         #Return requirements
     return requirements
@@ -144,12 +150,12 @@ def filter_actors(movie_list, actor_name = ""):
     return meets_require
 
 #Helper function that filters by length and has parameters of the dictionary or list of movies and the length that the user typed in:
-def filter_length(movie_list, length = 0):
+def filter_length(movie_list, min_length = 0, max_length = 1000):
     #Dictionary for the movies that qualify the filter requirements.
     meets_require = []
     #for loop that loops through the lengths in the movie dictionary:
     for movie in movie_list:
-        if movie["Length (min)"] == length:
+        if min_length < int(movie["Length (min)"]) and int(movie["Length (min)"]) < max_length:
             meets_require.append(movie)
     #Check if that value matches the genre that the user chose.
     #If it does:
@@ -174,7 +180,7 @@ def all_filters(filter_movies, num_requirements, user_requirements):
     #If 4 is in num_requirements:
     if "4" in num_requirements:
         #Run the filter_director function using filter_length and the fourth index of user_requirements as arguments for it. Set this to filter_movies.
-        filter_movies = filter_length(filter_movies, user_requirements[3])
+        filter_movies = filter_length(filter_movies, user_requirements[3], user_requirements[4])
     #return filter_movies
     return filter_movies
 
@@ -188,7 +194,7 @@ def print_nice(print_movies):
                 print(f"{item}: {movie[item]}")
                 if item == "Notable Actors":
                     print("")   #space between each movie
-                    time.sleep(0.25)
+                    time.sleep(0.15)
 
     else:
         print("There was nothing that matched the filters. Try using a different filter or less filters.\n")
