@@ -135,7 +135,7 @@ def filter_actors(movie_list, actor_name = ""):
     meets_require = []
     #for loop that loops through the important actors in the movie dictionary:
     for movie in movie_list:
-        if movie["Notable Actors"] == actor_name:
+        if actor_name in movie["Notable Actors"]:
             meets_require.append(movie)
     #Check if that value matches the genre that the user chose.
     #If it does:
@@ -149,7 +149,7 @@ def filter_length(movie_list, length = 0):
     meets_require = []
     #for loop that loops through the lengths in the movie dictionary:
     for movie in movie_list:
-        if movie["Length"] == length:
+        if movie["Length (min)"] == length:
             meets_require.append(movie)
     #Check if that value matches the genre that the user chose.
     #If it does:
