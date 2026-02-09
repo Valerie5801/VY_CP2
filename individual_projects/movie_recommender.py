@@ -1,6 +1,7 @@
 #VY 2nd Movie Recommender
 #import csv here
 import csv
+import time
 
 #Function that saves the CSV file:
 def save_csv():
@@ -41,7 +42,7 @@ def save_csv():
 #Function that gets asks user what filters they want to apply:
 def get_filters():
     #Print the available filters to apply (and let them know it has to be separated with commas with no spaces.)
-    print("You can filter by: \n1. Genre \n2. Directors \n3. Important Actor \n4. Length")
+    print("\nYou can filter by: \n1. Genre \n2. Directors \n3. Important Actor \n4. Length")
     #Genre is 1, Director is 2, Actor is 3, Length is 4.
     while True:
         #Ask the user what filters they want to apply (via corresponding numbers).
@@ -60,6 +61,7 @@ def get_filters():
 def specific_filters(user_filters = "1,2,3,4"):
     #Make a list named "requirements". This will be used as the list for the filters that should be applied when searching for movies.
     requirements = []
+    print("")   #space between sections
     #If 1 is in the string of filters that the user wants:
     if "1" in user_filters:
         #Ask the user for the genre they want and provide an example of how it should be formatted.
@@ -105,12 +107,11 @@ def filter_genre(movie_list, genre_name = ""):
     meets_require = []
     #for loop that loops through the genres in the movie list:
     for movie in movie_list:
-        for genre in movie:
-            if movie["Genre"] == genre_name:
-                meets_require.append(movie)
-            #Check if that value matches the genre that the user chose.
-            #If it does:
-                #Add it to the dictionary
+        if movie["Genre"] == genre_name:
+            meets_require.append(movie)
+        #Check if that value matches the genre that the user chose.
+        #If it does:
+            #Add it to the dictionary
     #Return the dictionary for movies that met the requirements
     return meets_require
 
@@ -120,12 +121,11 @@ def filter_director(movie_list, director_name = ""):
     meets_require = []
     #for loop that loops through the directors in the movie dictionary:
     for movie in movie_list:
-        for director in movie:
-            if movie["Director"] == director_name:
-                meets_require.append(movie)
-        #Check if that value matches the director that the user chose.
-        #If it does:
-            #Add it to the dictionary
+        if movie["Director"] == director_name:
+            meets_require.append(movie)
+    #Check if that value matches the director that the user chose.
+    #If it does:
+        #Add it to the dictionary
     #Return the dictionary for movies that met the requirements
     return meets_require
 
@@ -135,12 +135,11 @@ def filter_actors(movie_list, actor_name = ""):
     meets_require = []
     #for loop that loops through the important actors in the movie dictionary:
     for movie in movie_list:
-        for actor in movie:
-            if movie["Notable Actors"] == actor_name:
-                meets_require.append(movie)
-        #Check if that value matches the genre that the user chose.
-        #If it does:
-            #Add it to the dictionary
+        if movie["Notable Actors"] == actor_name:
+            meets_require.append(movie)
+    #Check if that value matches the genre that the user chose.
+    #If it does:
+        #Add it to the dictionary
     #Return the dictionary for movies that met the requirements
     return meets_require
 
@@ -150,12 +149,11 @@ def filter_length(movie_list, length = 0):
     meets_require = []
     #for loop that loops through the lengths in the movie dictionary:
     for movie in movie_list:
-        for length in movie:
-            if movie["Length"] == length:
-                meets_require.append(movie)
-        #Check if that value matches the genre that the user chose.
-        #If it does:
-            #Add it to the dictionary
+        if movie["Length"] == length:
+            meets_require.append(movie)
+    #Check if that value matches the genre that the user chose.
+    #If it does:
+        #Add it to the dictionary
     #Return the dictionary for movies that met the requirements
     return meets_require
 
@@ -183,9 +181,17 @@ def all_filters(filter_movies, num_requirements, user_requirements):
 #function that prints the movies out in a pretty format with parameter of print_movies:
 def print_nice(print_movies):
     #for loop here
-    for movie in print_movies:
-        #print out each movie
-        print(movie)
+    if print_movies:
+        for movie in print_movies:
+            for item in movie:
+                #print out each movie
+                print(f"{item}: {movie[item]}")
+                if item == "Notable Actors":
+                    print("")   #space between each movie
+                    time.sleep(0.25)
+
+    else:
+        print("There was nothing that matched the filters. Try using a different filter or less filters.\n")
 
 #Function that acts as the main menu:
 def main_menu(avail_movies):
@@ -197,7 +203,7 @@ def main_menu(avail_movies):
         #If they chose 1:
         if user_action == "1":
             #run get_filters and set it to applied_filters
-            applied_filters  = get_filters()
+            applied_filters = get_filters()
             #run all_filters with arguments movies, applied_filters, and specific_filters(with argument applied_filters) and set it to filtered_movies
             filtered_movies = all_filters(avail_movies, applied_filters, specific_filters(applied_filters))
             #run the function that prints the movies in a pretty format with argument filtered_movies
