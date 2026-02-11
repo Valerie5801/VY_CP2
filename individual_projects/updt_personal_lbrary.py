@@ -2,15 +2,66 @@
 #import csv here
 import csv
 
-#List with indexes that match the book and author.
-existing_books = ["Never Quit", "20,000 Leagues Under the Sea"]
-existing_authors = ["Jimmy Settle", "Jules Verne"]
+#empty dictionary called books to save books with placeholder books
+books = [
+    {"Title": "Never Quit", "Author": "Jimmy Settle"},
+    {"Title": "20,000 Leagues Under the Sea", "Author": "Jules Verne"}
+]
 
-#Function named view_library for viewing the library
-def view_library():
-    print("Here is what currently is in your library:\n")
-    for book in range(len(existing_books)):
-        print(f"{existing_books[book]} by {existing_authors[book]}")
+#function for first saving CSV:
+def first_save_csv():
+    #try the following:
+    try:
+        #open the provided movies list and set the mode to "r" for reading as sample:
+        with open("individual_projects\new_personal_library.csv", mode= "r") as sample:
+            #read sample and set it to the variable read_list
+            read_list = csv.reader(sample)
+            #make a variable that grabs the next value in the CSV reader
+            next_item = next(read_list)
+            #make an empty list called "library"
+            library = []
+            #Use a for loop here to make a dictionary:
+            for line in read_list:
+                library.append(
+                    {
+                        next_item[0]: line[0],
+                        next_item[1]: line[1],
+                    }
+                )
+                #append the dictionary with the respective information (found using index values)
+    #except statement here if the try doesn't work:
+    except:
+        print("The CSV doesn't exist.")
+        #show that the CSV doesn't exist.
+        #Return None
+        return None
+    #else statement:
+    else:
+        #Return library
+        return library
+
+#function for saving the CSV again:
+def rewrite_csv():
+    with open("notes/test.csv", "r+", newline='') as csvfile:
+        fieldnames = ['Title', 'Author']
+        reader = csv.reader(csvfile)
+        writer = csv.DictWriter(csvfile, fieldnames)
+        writer.writerows(books)
+
+#Function named view_library for viewing the library with parameters of library
+def view_library(library):
+    if library:
+        print("Here is what currently is in your library:\n")
+        #for loop here:
+            #loop through the dictionary:
+                #print out each book:
+        for book in library:
+            for item in book:
+                #print out each movie
+                print(f"{item}: {book[item]}")
+                if item == "Author":
+                    print("")   #space between each movie
+
 
 #Function named add_item for adding a book to the library
 def add_item():
@@ -22,7 +73,6 @@ def add_item():
 
 #Function named remove_item for removing a book from the library
 def remove_item():
-    view_library()
     while True:
         remove_title = input('\nTitle of book you want to remove: ')
 
@@ -37,6 +87,7 @@ def remove_item():
 
 #Function named search_item for searching for a book in the library
 def search_item():
+    search_results = []
     while True:
         print("What would you like to search by?: \n1. Title \n2. Author")
         search_by = input()
@@ -82,23 +133,19 @@ def main_menu():
         print("\nType the number corresponding to the action you want to do.")
         print("1. View \n2. Add \n3. Remove \n4. Search \n5. Exit(This option will reset the library)")
         user_action = input("Type what you want to do: ")
-
         if user_action == "1":
             view_library()
-
         elif user_action == "2":
             add_item()
-
         elif user_action == "3":
             remove_item()
-
         elif user_action == "4":
             search_item()
-
         elif user_action == "5":
             break
 
 print("This is your personal library to keep track and store books.")
+
 print("You can either view your library, add a book, remove a book, search for a book, or exit. (Exiting this program will erase all data.)")
 print('When using this library, make sure you are using proper capitalization and spaces. \n(For example, instead of "never quit", type "Never Quit")\n')
 
