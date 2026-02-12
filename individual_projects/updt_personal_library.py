@@ -44,7 +44,7 @@ def rewrite_csv():
     with open("individual_projects/new_personal_library.csv", "r+", newline='') as csvfile:
         fieldnames = ['Title', 'Author']
         writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
-        
+        writer.writeheader()
         writer.writerows(books)
 
 #Function named view_library for viewing the library with parameters of library
