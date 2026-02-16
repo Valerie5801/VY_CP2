@@ -41,7 +41,7 @@ def save_csv():
 
 #function for saving the CSV again. This will be used every time the user makes a change to their library:
 def rewrite_csv():
-    with open("individual_projects/new_personal_library.csv", "r+", newline='') as csvfile:
+    with open("individual_projects/new_personal_library.csv", "w", newline='') as csvfile:
         fieldnames = ['Title', 'Author']
         writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
         writer.writeheader()
@@ -60,6 +60,8 @@ def view_library(library):
                 print(f"{item}: {book[item]}")
                 if item == "Author":
                     print("")   #space between each movie
+    else:  #show this message if nothing is in the library
+        print("There is nothing in your library.")    
 
 
 #Function named add_item for adding a book to the library
@@ -67,22 +69,22 @@ def add_item():
     add_title = input('Title of the book you want to add: ')
     add_author = input("Author's full name: ")
     #add a new dictionary inside the books list for the new book.
-    books.append({"Title": add_title, "Author": add_author})
+    books.append({"Title": add_title.title(), "Author": add_author.title()})
     print(f"{add_title} by {add_author} was added to the library.")
 
 #Function named remove_item for removing a book from the library
 def remove_item():
     while True:
-        remove_title = input('\nTitle of book you want to remove: ')
-        found_book = True
+        print("Please type the full title.")
+        remove_title = input('\nTitle of book you want to remove: ').title()
+        found_book = False
         #find the book that the user wants to find
         for info in books:
-            if not remove_title in books[books.index(info)]:
-                found_book = False
-            else:
+            if info["Title"] == remove_title:
+                found_book = True
                 #remove the info dictionary for the book that the user wants to remove. 
-                print(f"{books[info]["Title"]} by {books[info]["Author"]} has been removed from the library.")
-                del books[info]
+                print(f"{info['Title']} by {info['Author']} has been removed from the library.")
+                books.remove(info)
                 break
         if found_book:
             break
@@ -95,7 +97,7 @@ def search_item():
     #while True loop for stupid-proofing
     while True:
         print("What would you like to search by?: \n1. Title \n2. Author")
-        search_by = input()
+        search_by = input().title()
 
         if search_by == "1":
             added_books = {"Placeholder"}
