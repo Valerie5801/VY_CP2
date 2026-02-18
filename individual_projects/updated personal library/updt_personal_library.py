@@ -4,7 +4,7 @@ import csv
 
 #list called books to save books with placeholder book
 books = [
-    {"Title": "Never Quit", "Author": "Jimmy Settle"},
+    {"Title": "Never Quit", "Author": "Jimmy Settle", "Year": "2018", "Genre": "Biography"},
 ]
 
 #function for first saving CSV:
@@ -25,6 +25,8 @@ def save_csv():
                     {
                         next_item[0]: line[0],
                         next_item[1]: line[1],
+                        next_item[2]: line[2],
+                        next_item[3]: line[3]
                     }
                 )
                 #append the dictionary with the respective information (found using index values)
@@ -42,13 +44,13 @@ def save_csv():
 #function for saving the CSV again. This will be used every time the user makes a change to their library:
 def rewrite_csv():
     with open("individual_projects/new_personal_library.csv", "w", newline='') as csvfile:
-        fieldnames = ['Title', 'Author']
+        fieldnames = ['Title', 'Author', 'Year', 'Genre']
         writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
         writer.writeheader()
         writer.writerows(books)
 
-#Function named view_library for viewing the library with parameters of library
-def view_library(library):
+#Function named view_library for viewing the library with all details with parameters of library
+def view_all_details(library):
     if library:
         print("Here is what currently is in your library:\n")
         #for loop here:
@@ -61,18 +63,51 @@ def view_library(library):
                 if item == "Author":
                     print("")   #space between each movie
     else:  #show this message if nothing is in the library
-        print("There is nothing in your library.")    
+        print("There is nothing in your library.")
+
+def view_simple_details(library):
+    if library:
+        print("Here is what currently is in your library:\n")
+        #for loop here:
+            #loop through the dictionary:
+                #print out each book:
+        for book in library:
+            for item in book:
+                if item == "Year":  #skip year and genre
+                    print("")
+                else:   #print only title and author
+                    print(f"{item}: {book[item]}")
+
+#function that uses the above two helper functions to allow the user to choose between the two ways of viewing.
+def view_library():
+    while True:
+        view_how = print("Do you want to show only simple details(title and author only) or all details?(simple/all): ")
+        if view_how.lower().strip() == "simple":
+            view_simple_details(books)
+            break
+        elif view_how.lower().strip() == "all":
+            view_all_details(books)
+            break
+        else:
+            print("That isn't an option, please try again.")
 
 
 #Function named add_item for adding a book to the library
 def add_item():
-    add_title = input('Title of the book you want to add: ')
+    add_title = input("Title of the book you want to add: ")
     add_author = input("Author's full name: ")
+    while True:  #stupidproofing for publishing year date
+        add_year = input("Year of book's publishing: ")
+        if not add_year.isnumeric():
+            print("That isn't a year. Please try again.")
+        else:
+            break
+    add_genre = input("Main genre of book: ")
     #add a new dictionary inside the books list for the new book.
-    books.append({"Title": add_title.title(), "Author": add_author.title()})
+    books.append({"Title": add_title.title().strip(), "Author": add_author.title().strip(), "Year": add_year.strip(), "Genre": add_genre.title().strip()})
     print(f"{add_title} by {add_author} was added to the library.")
 
-#Function named remove_item for removing a book from the library
+#Function named remove_item for removing a book from the library (uses the get_input helper function)
 def remove_item():
     while True:
         print("Please type the full title.")
@@ -134,14 +169,43 @@ def search_item():
         else:  #stupid-proofing
             print("That isn't an option. Please try again.")
 
+#function to update a specific item
+def update_item():
+    while True:
+        print("Please type the full title.")  #get user title
+        update_title = input('\nTitle of book you want to update info for: ').title()
+        found_book = False
+        #find the book that the user wants to find
+        for info in books:
+            if info["Title"] == update_title:
+                found_book = True
+                old_title = info["Title"]  #save old title for sake of printing
+                old_author = info["Author"]   #save old author for sake of printing
+                info["Title"] = input("New title of book?: ").title().strip()
+                info["Author"] = input("New author of book?: ").title().strip()
+                while True: #stupid proofing for year number
+                    info["Year"] = input("New year of book?: ").strip()
+                    if not info["Year"].isnumeric():
+                        print("That isn't a number. Please try again")
+                    else:
+                        break
+                info["Genre"] = input("New genre of book?: ").title().strip()
+                #remove the info dictionary for the book that the user wants to remove. 
+                print(f"{old_title} by {old_author} has been updated to have this information: \n\tTitle: {info["Title"]} \n\tAuthor: {info["Author"]} \n\tPublishing Year: {info["Year"]} \n\tGenre: {info["Genre"]}")
+                break
+        if found_book:
+            break
+        else:  #stupid proofing
+            print("That book doesn't exist. Please try again.")
+
 #Function named main_menu for the main menu (this uses all other functions)
 def main_menu():
     while True:
-        print("\nType the number corresponding to the action you want to do.")
-        print("1. View \n2. Add \n3. Remove \n4. Search \n5. Exit")
+        print("\nType the number corresponding to the action you want to do:")
+        print("\t1. View \n\t2. Add \n\t3. Remove \n\t4. Search \n\t5.Update a book's info \n\t6. Exit")
         user_action = input("Type what you want to do: ")
         if user_action == "1":
-            view_library(books)
+            view_library()
         elif user_action == "2":
             add_item()
             rewrite_csv()
@@ -151,7 +215,11 @@ def main_menu():
         elif user_action == "4":
             search_item()
         elif user_action == "5":
+            update_item()
+        elif user_action == "6":
             break
+        else:
+            print("That isn't an option. Please try again.")
 
 print("This is your personal library to keep track and store books.")
 
@@ -160,7 +228,7 @@ print('When using this library, make sure you are using proper capitalization an
 
 books = save_csv()
 
-view_library(books)
+view_all_details()
 main_menu()
 
 print("Goodbye.")
