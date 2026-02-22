@@ -14,13 +14,18 @@ def main_menu():
         user_action = input("What do you want to do?")
         match user_action:
             #If they chose option 1:
-            case 1:
+            case "1":
                 #run the function that updates the file path (from menu_actions)
                 
             #If they chose option 2:
+            case "2":
                 #run the function that shows the txt file document (from menu_actions)
             #If they chose option 3:
+            case "3":
                 #run the function that lets the user add content (from menu_actions)
             #If they chose option 4:
+            case "4":
                 #break out of the while loop
+                break
+            case _:
             #Stupid proof here in case the user typed in something invalid.
