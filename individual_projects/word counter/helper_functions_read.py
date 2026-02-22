@@ -28,15 +28,3 @@
         #Split each line and set it to counter_line
         #Add the length of counter_line to total_words.
     #return total_words
-
-#function that shows the word count and the last updated time in a nice format with parameters of the time:
-    #try here:
-        #Open the CSV using read mode:
-            #read the CSV and get the next line
-            #Make a dictionary named formatted_info
-    #except here:
-        #show the CSV wasn't found
-    #else:
-        #return formatted_info
-
-#
