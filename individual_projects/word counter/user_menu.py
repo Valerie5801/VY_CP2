@@ -3,7 +3,7 @@
 import menu_actions
 
 #main_menu function:
-def main_menu():
+def main_menu(document_info, document_content):
     #while True loop here:
     while True:
         #show the title "Document word count updater"
@@ -16,16 +16,19 @@ def main_menu():
             #If they chose option 1:
             case "1":
                 #run the function that updates the file path (from menu_actions)
-                
+                menu_actions.update_path(document_info)
             #If they chose option 2:
             case "2":
                 #run the function that shows the txt file document (from menu_actions)
+                menu_actions.show_doc()
             #If they chose option 3:
             case "3":
                 #run the function that lets the user add content (from menu_actions)
+                menu_actions.add_content(document_content)
             #If they chose option 4:
             case "4":
                 #break out of the while loop
                 break
             case _:
             #Stupid proof here in case the user typed in something invalid.
+                print("That is not an option. Please try again.")
