@@ -1,8 +1,5 @@
 #VY 2nd Menu Actions for Word Counter
 #import helper_functions_read
-import helper_functions_read
-#import time_clean_functions
-import time_clean_functions
 
 #this is where the functions that use other functions for their mechanics will be
 
@@ -11,7 +8,7 @@ def update_path(doc_info):
     #Ask the user for the specific file path
     new_path = input("Please type the EXACT relative path for the file: ")
     #Replace the old file path in the dictionary with the new one
-    doc_info["Path"] = new_path
+    doc_info[0]["Path"] = new_path
     #return the dictionary
     return doc_info
 
