@@ -21,5 +21,7 @@
         #loop through content:
             #print out each line
 
-#function that lets the user add content to the document:
-    #
+#function that lets the user add content to the document with parameter of the list that holds lines of the txt document in different values:
+    #Ask the user for what they want to add to the document, and tell them to press enter twice to stop editing (this allows the user to write on separate lines)
+    #split the user's input based off of different lines, and add each one to the list
+    #return the list
