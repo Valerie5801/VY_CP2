@@ -1,17 +1,26 @@
 #VY 2nd Menu for Word Counter
 #import menu_actions
+import menu_actions
 
 #main_menu function:
+def main_menu():
     #while True loop here:
+    while True:
         #show the title "Document word count updater"
+        print("---Document Word Count Updater---")
         #show the user what they can do: 1. Update document info (gets new file path), 2. View document, 3. Add content to document, 4. Exit the program
+        print("You can: \n\t1. Update Document File Path  \n\t2. View Document \n\t3. Add Content To Document  \n\t4. Exit")
         #Ask the user for what they want to do
-        #If they chose option 1:
-            #run the function that updates the file path (from menu_actions)
-        #If they chose option 2:
-            #run the function that shows the txt file document (from menu_actions)
-        #If they chose option 3:
-            #run the function that lets the user add content (from menu_actions)
-        #If they chose option 4:
-            #break out of the while loop
-        #Stupid proof here in case the user typed in something invalid.
+        user_action = input("What do you want to do?")
+        match user_action:
+            #If they chose option 1:
+            case 1:
+                #run the function that updates the file path (from menu_actions)
+                
+            #If they chose option 2:
+                #run the function that shows the txt file document (from menu_actions)
+            #If they chose option 3:
+                #run the function that lets the user add content (from menu_actions)
+            #If they chose option 4:
+                #break out of the while loop
+            #Stupid proof here in case the user typed in something invalid.

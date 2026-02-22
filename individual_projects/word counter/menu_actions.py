@@ -1,10 +1,13 @@
 #VY 2nd Menu Actions for Word Counter
 #import helper_functions_read
+import helper_functions_read
 #import time_clean_functions
+import time_clean_functions
 
 #this is where the functions that use other functions for their mechanics will be
 
 #function for updating file path with parameter of the dictionary that holds all the file data:
+def update_path()
     #Ask the user for the specific file path
     #Replace the old file path in the dictionary with the new one
     #return the dictionary
