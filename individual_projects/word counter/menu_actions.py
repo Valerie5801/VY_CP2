@@ -1,5 +1,4 @@
 #VY 2nd Menu Actions for Word Counter
-#import helper_functions_read
 
 #this is where the functions that use other functions for their mechanics will be
 
@@ -39,9 +38,18 @@ def show_doc():
 def add_content(doc_content):
     #Ask the user for what they want to add to the document, and tell them to press enter twice to stop editing (this allows the user to write on separate lines)
     print("Enter new content (press Enter twice when you're done.): ")
-    new_content = input().splitlines()
-    #split the user's input based off of different lines, and add each one to the list
-    for line in new_content:
+    # Read multiple lines until the user enters a blank line.
+    # Collect only the newly added lines and update the in-memory `doc_content`.
+    added_lines = []
+    while True:
+        line = input()
+        if line == "":
+            break
+        # Keep `doc_content` as a list of lines without trailing newlines (consistent with save_doc())
         doc_content.append(line)
-    #return the list
-    return doc_content
+        added_lines.append(line)
+    # Return only the new lines
+    return added_lines
+
+def rewrite_content(doc_content):
+    
