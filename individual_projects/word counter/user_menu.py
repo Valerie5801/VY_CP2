@@ -23,6 +23,7 @@ def main_menu(document_info, document_content):
             #If they chose option 2:
             case "2":
                 #run the function that shows the txt file document (from menu_actions)
+                print("Here is what currently is in your document:")
                 menu_actions.show_doc()
             #If they chose option 3:
             case "3":
