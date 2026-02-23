@@ -9,9 +9,9 @@ def main_menu(document_info, document_content):
     #while True loop here:
     while True:
         #show the title "Document word count updater"
-        print("---Document Word Count Updater---")
+        print("\n---Document Word Count Updater---")
         #show the user what they can do: 1. Update document info (gets new file path), 2. View document, 3. Add content to document, 4. Exit the program
-        print("You can: \n\t1. Update Document File Path  \n\t2. View Document \n\t3. Add Content To Document  \n\t4. Rewrite Document \n\t5. Show details \n\t6. Exit")
+        print("You can: \n\t1. Update Document File Path  \n\t2. View Document \n\t3. Add Content To Document  \n\t4. Rewrite Document (this will reset all content currently in the document and replace it with new content you type in) \n\t5. Show details \n\t6. Exit")
         #Ask the user for what they want to do
         user_action = input("What do you want to do?: ")
         match user_action:
@@ -30,7 +30,13 @@ def main_menu(document_info, document_content):
                 new_content = menu_actions.add_content(document_content)
                 helper_functions_read.add_doc(new_content)
             case "4":
-                
+                #run the function that rewrites the entire txt document with new content
+                helper_functions_read.rewrite_doc()
+                document_content = helper_functions_read.save_doc()
+            case "5":
+                #run the function that prints out the document info nicely
+                print("")
+                print(time_clean_functions.nice_print(document_info[0]))
             #If they chose option 6:
             case "6":
                 #break out of the while loop

@@ -19,15 +19,25 @@ def save_doc():
     else:
         return content
 
-#function for rewriting the txt document with parameters of line_in, a list that has each line of the document as different values, and file_path:
-def rewrite_doc(line_in):
+#function for rewriting the txt document with completely new content from the user:
+def rewrite_doc():
+    #Ask the user for what they want to write to replace the entire document
+    print("Enter new content to replace the entire document (press Enter twice when you're done.): ")
+    # Read multiple lines until the user enters a blank line.
+    new_lines = []
+    while True:
+        line = input()
+        if line == "":
+            break
+        new_lines.append(line)
+    
     try:
-        #open the txt document using mode w:
-        with open("individual_projects/word counter/example_doc.txt", "w") as document:
+        #open the txt document using mode r+:
+        with open("individual_projects/word counter/example_doc.txt", "r+") as document:
             #clear the file
             document.truncate(0)
-            #loop through line_in:
-            for line in line_in:
+            #loop through new_lines:
+            for line in new_lines:
                 #Write each line on the text file.
                 # Ensure each written line ends with a newline.
                 if line.endswith("\n"):
