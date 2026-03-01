@@ -14,7 +14,7 @@ def sip(depth, color, length, turt):
     
     #draw triangle by rotating 120 degrees and moving the same distance for the sides
 
-test_input = int(input("input a depth number: "))
+"""test_input = int(input("input a depth number: "))
 t = turtle.Turtle()
 t.goto(0, 0)
 t.speed(0)
@@ -22,4 +22,4 @@ t.shape("turtle")
 
 #test running it
 sip(test_input, "blue", 400, t)
-turtle.done()
+turtle.done()"""
