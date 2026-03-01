@@ -25,6 +25,8 @@ def main_menu():
 
             #Ask them for the color they want the triangle to be.
             tri_color = input("Type a color for the triangle: ")
+            try:
+                
 
             #set up turtle here
             t = turtle.Turtle()
@@ -59,6 +61,9 @@ def main_menu():
                 pass
 
         #Else:
-        else:
+        elif user_action == "2":
             break
             #break out of the program
+        
+        else: #stupid proofing
+            print("That isn't an option. Please try again.")
