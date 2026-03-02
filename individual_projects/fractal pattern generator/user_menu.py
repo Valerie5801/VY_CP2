@@ -23,8 +23,8 @@ def main_menu():
                     tri_depth = int(tri_depth)
                     break
 
-            color_valid = True
-            while color_valid:
+            color_valid = False
+            while not color_valid:
                 #Ask them for the color they want the triangle to be.
                 tri_color = input("Type a color for the triangle: ")
                 color_valid = turtle_draw_functions.check_color(tri_color)
@@ -56,6 +56,7 @@ def main_menu():
 
             #close turtle window
             try:
+                t.clear()
                 screen.bye()
             except turtle.Terminator():
                 #failsafe

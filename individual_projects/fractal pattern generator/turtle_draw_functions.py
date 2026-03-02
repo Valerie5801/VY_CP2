@@ -26,7 +26,7 @@ turtle.done()"""
 
 #function that checks if the user typed in a valid color with parameters of the color and turtle:
 def check_color(usr_color):
-    test_turt = turtle.Screen()
+    test_turt = turtle.Turtle()
     #try:
     try:
         #use .color() to check if it's valid
@@ -35,10 +35,10 @@ def check_color(usr_color):
     except:
         #return False
         print("That isn't a valid color.")
-        #test_turt.bye()
+        test_turt.hideturtle()
         return False
     #else, if it does work:
     else:
         #return True
-        #test_turt.bye()
+        test_turt.hideturtle()
         return True
