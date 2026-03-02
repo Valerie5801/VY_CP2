@@ -1,7 +1,7 @@
 # Sierpinski Triangle Generator
 ***
 
-![A generated Sierpinski Triangle with a depth of four and a purple color](individual_projects\fractal pattern generator\sierpinski_triangle.png)
+![A generated Sierpinski Triangle with a depth of four and a purple color:](sierpinski_triangle.png)
 This is a program that generates a Sierpinski Triangle based on user inputs. The user can choose the color and depth of the triangle.
 
 ## How to Use
@@ -14,7 +14,17 @@ This is a program that generates a Sierpinski Triangle based on user inputs. The
 
 ## List of Key Features
 - It lets the user choose the depth of the triangle. The max depth is 5.
-- It lets the user choose the color of the triangle. It can take in words, rgb tuples, and hex codes.
+- It lets the user choose the color of the triangle. It accepts words, rgb tuples, and hex codes.
 
 ## Installation instructions
 As long the Programming drive is accessible, this program should work. This program uses Python.
+
+## Contributors
+- Valerie5801
+
+## License Information
+- Utah County Academy of Sciences
+
+## Contributions
+- You can add the option to generate another fractal (e.g., a Koch Snowflake)
+- You can add the option to save the fractal as an image.
