@@ -1,6 +1,6 @@
 #VY 2nd Main Menu for fractal pattern generator
 #import turtle_draw_functions
-from turtle_draw_functions import sip
+import turtle_draw_functions
 import turtle
 
 #function named "main_menu":
@@ -23,10 +23,11 @@ def main_menu():
                     tri_depth = int(tri_depth)
                     break
 
-            #Ask them for the color they want the triangle to be.
-            tri_color = input("Type a color for the triangle: ")
-            #try:
-                
+            color_valid = True
+            while color_valid:
+                #Ask them for the color they want the triangle to be.
+                tri_color = input("Type a color for the triangle: ")
+                color_valid = turtle_draw_functions.check_color(tri_color)
 
             #set up turtle here
             t = turtle.Turtle()
@@ -48,7 +49,7 @@ def main_menu():
             t.pendown()
 
             #run the sip function from turtle_draw_functions
-            sip(tri_depth, tri_color, 400, t)
+            turtle_draw_functions.sip(tri_depth, tri_color, 400, t)
 
             #wait for user to hit Enter before closing window
             input("\nPress Enter to close the window and return to the menu.")

@@ -23,3 +23,22 @@ t.shape("turtle")
 #test running it
 sip(test_input, "blue", 400, t)
 turtle.done()"""
+
+#function that checks if the user typed in a valid color with parameters of the color and turtle:
+def check_color(usr_color):
+    test_turt = turtle.Screen()
+    #try:
+    try:
+        #use .color() to check if it's valid
+        test_turt.color(usr_color)
+    #except, in case it doesn't work:
+    except:
+        #return False
+        print("That isn't a valid color.")
+        #test_turt.bye()
+        return False
+    #else, if it does work:
+    else:
+        #return True
+        #test_turt.bye()
+        return True
