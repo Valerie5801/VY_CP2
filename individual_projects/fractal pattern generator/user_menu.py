@@ -25,7 +25,7 @@ def main_menu():
 
             #Ask them for the color they want the triangle to be.
             tri_color = input("Type a color for the triangle: ")
-            try:
+            #try:
                 
 
             #set up turtle here
