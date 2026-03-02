@@ -1,7 +1,7 @@
 # Sierpinski Triangle Generator
 ***
 
-![individual_projects\fractal pattern generator\sierpinski_triangle.png]
+![A generated Sierpinski Triangle with a depth of four and a purple color](individual_projects\fractal pattern generator\sierpinski_triangle.png)
 This is a program that generates a Sierpinski Triangle based on user inputs. The user can choose the color and depth of the triangle.
 
 ## How to Use
