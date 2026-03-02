@@ -8,17 +8,18 @@ def main_menu():
     #While true loop:
     while True:
         #ask the user if they want to draw a siperniski triangle or exit out of the program
-        print("\nYou can: \n1. Draw a Siperniski Triangle \n2. Exit")
+        print("\nYou can: \n1. Draw a Sierpniski Triangle \n2. Exit")
         user_action = input("What do you want to do?(1/2): ")
         #If they want to draw a siperniski triangle:
         if user_action == "1":
 
-            #ask them for the depth they want. Tell them that it is reccommended they set a depth less than 8.
-            print("\nNOTE: Anything above a 6 will take a long time to draw!")
+            #ask them for the depth they want. Tell them that max is 5
             while True:
-                tri_depth = input("\nDepth for the triangle (as a number): ")
+                tri_depth = input("\nDepth for the triangle (as a number. max is 5): ")
                 if not tri_depth.isnumeric():
                     print("That isn't a number. Please try again.")
+                elif int(tri_depth) > 5:
+                    print("That's above 5!")
                 else:
                     tri_depth = int(tri_depth)
                     break
@@ -33,10 +34,10 @@ def main_menu():
             t = turtle.Turtle()
             screen = turtle.Screen()
             screen.title("Siperniski Fractal")
+            screen.tracer(0) #make the drawing instant
 
             #put the window in front
             try:
-                screen._root.lift()
                 screen._root.attributes('-topmost', True)
             except Exception:
                 pass
@@ -49,21 +50,23 @@ def main_menu():
             t.pendown()
 
             #run the sip function from turtle_draw_functions
-            turtle_draw_functions.sip(tri_depth, tri_color, 400, t)
+            turtle_draw_functions.sier(tri_depth, tri_color, 400, t)
+            screen.update()
 
-            #wait for user to hit Enter before closing window
-            input("\nPress Enter to close the window and return to the menu.")
+            #wait for user to press enter when program done drawing to close window
+            input("Press enter to close the window.")
 
-            #close turtle window
+            #clear the screen and put it behind vscode window
             try:
-                t.clear()
-                screen.bye()
-            except turtle.Terminator():
-                #failsafe
+                screen._root.lower()
+                turtle.clearscreen()
+            except:
                 pass
 
         #Else:
         elif user_action == "2":
+            #remove turtle
+            t.clear()
             break
             #break out of the program
         
