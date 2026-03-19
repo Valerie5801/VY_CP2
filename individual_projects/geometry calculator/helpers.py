@@ -41,7 +41,27 @@ def save_csv():
 #function for rewriting the CSV again. This will be used every time the user makes a change to their library:
 def rewrite_csv(shapes):
     with open("individual_projects//updated personal library//new_personal_library.csv", "w", newline='') as csvfile:
-        fieldnames = ['Type', 'First Measurement', 'Second Measurement', 'Area', 'Perimeter']
+        fieldnames = ['Type', 'Label', 'First Measurement', 'Second Measurement', 'Third Measurement', 'Fourth Measurement', 'Perimeter', 'Area']
         writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
         writer.writeheader()
         writer.writerows(shapes)
+
+
+#function for stupid-proofing with numbers:
+def check_num():
+    #while True loop:
+    while True:
+        #get an input from the user
+        user_num = input("Type here: ")
+        #if the input is not a number, ask them again
+        if not user_num.isnumeric():
+            print("That isn't a number. Please try again.")
+        #if it is a number, break out of the loop
+        else:
+            break
+    #return the input
+    return user_num
+    
+
+
+#function to scale the shapes with 
