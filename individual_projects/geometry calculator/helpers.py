@@ -63,5 +63,9 @@ def check_num():
     return user_num
     
 
+#function to count the shapes
+def count_shapes(shapes):
+    pass
+
 
 #function to scale the shapes with 
