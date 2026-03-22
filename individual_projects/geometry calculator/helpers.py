@@ -60,7 +60,7 @@ def check_num():
         else:
             break
     #return the input
-    return user_num
+    return float(user_num)
     
 
 #function to count the shapes

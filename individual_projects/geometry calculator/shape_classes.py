@@ -52,7 +52,7 @@ class Square:
     #method to display all info:
     def show_info(self):
         #return a string that contains the length, width, perimeter, and area
-        return f"Side: {self.side}\n\nPerimeter: {self.side*4}\nArea: {self.side**2}"
+        return f"Side: {self.side}\nPerimeter: {self.side*4}\nArea: {self.side**2}"
 
 
 #circle class:
@@ -66,18 +66,18 @@ class Circle:
     def calc_peri(self):
         #multiply the radius by 2 and pi (accessed via the math module) and set it to perimeter
         #return perimeter
-        return self.radius*2*math.pi()
+        return self.radius*2*math.pi
 
     #make a method to calculate area:
     def calc_area(self):
         #square the radius and multiply it by pi and set it to area
         #return area
-        return (self.radius**2)*math.pi()
+        return (self.radius**2)*math.pi
 
     #method to display all info:
     def show_info(self):
         #return a string that contains the length, width, perimeter, and area
-        return f"Radius: {self.radius}\n\nPerimeter: {self.radius*2*math.pi()}\nArea: {(self.radius**2)*math.pi()}"
+        return f"Radius: {self.radius}\n\nPerimeter: {self.radius*2*math.pi}\nArea: {(self.radius**2)*math.pi}"
 
 
 #triangle class:
@@ -105,4 +105,4 @@ class Triangle:
     #method to display all info:
     def show_info(self):
         #return a string that contains the length, width, perimeter, and area
-        return f"Base: {self.base}\n\First Side: {self.first_side}\nSecond Side: {self.second_side}\nHeight: {self.height}\nPerimeter: {self.base+self.first_side+self.second_side}\nArea: {(self.base*self.height)/2}"
+        return f"Base: {self.base}\nFirst Side: {self.first_side}\nSecond Side: {self.second_side}\nHeight: {self.height}\nPerimeter: {self.base+self.first_side+self.second_side}\nArea: {(self.base*self.height)/2}"

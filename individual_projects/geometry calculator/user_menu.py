@@ -23,7 +23,7 @@ def main_menu():
         print("You may: \n1. Create a new shape\n2. View all shapes\n3. Select a shape\n4.Compare two shapes\n5. See the formula guide\n6.Exit")
 
         #ask for the user's action as an input and set it to user_action
-        user_action = print("What do you want to do?")
+        user_action = input("What do you want to do?: ")
         
         #match user_action here:
         match user_action:
