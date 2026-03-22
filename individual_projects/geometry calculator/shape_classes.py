@@ -30,7 +30,7 @@ class Rectangle:
     #method to save info as a dictionary in preperation for storing it in main list:
     def save_info(self):
         #set third and fourth measurements to 0 since they don't exist
-        rectangle_info = {"First Measurement": self.length, "Second Measurement": self.width, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
+        rectangle_info = {"Type": "Rectangle", "First Measurement": self.length, "Second Measurement": self.width, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
         return rectangle_info
 
     #method to display all info:
@@ -62,7 +62,7 @@ class Square:
     #method to save info as a dictionary in preperation for storing it in main list:
     def save_info(self):
         #set second, third, and fourth measurements to 0 as they don't exist
-        square_info = {"First Measurement": self.side, "Second Measurement": 0, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
+        square_info = {"Type": "Square", "First Measurement": self.side, "Second Measurement": 0, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
         return square_info
 
     #method to display all info:
@@ -95,7 +95,7 @@ class Circle:
     #method to save info as a dictionary in preperation for storing it in main list:
     def save_info(self):
         #set second, third, and fourth measurements to 0 as they don't exist
-        circle_info = {"First Measurement": self.radius, "Second Measurement": 0, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
+        circle_info = {"Type": "Circle", "First Measurement": self.radius, "Second Measurement": 0, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
         return circle_info
 
     #method to display all info:
@@ -131,7 +131,7 @@ class Triangle:
     #method to save info as a dictionary in preperation for storing it in main list:
     def save_info(self):
         #set second, third, and fourth measurements to 0 as they don't exist
-        triangle_info = {"First Measurement": self.base, "Second Measurement": self.first_side, "Third Measurement": self.second_side, "Fourth Measurement": self.height, "Perimeter": self.perimeter, "Area": self.area}
+        triangle_info = {"Type": "Triangle", "First Measurement": self.base, "Second Measurement": self.first_side, "Third Measurement": self.second_side, "Fourth Measurement": self.height, "Perimeter": self.perimeter, "Area": self.area}
         return triangle_info
 
     #method to display all info:
