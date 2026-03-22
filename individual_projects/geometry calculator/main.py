@@ -7,4 +7,6 @@ import action_funcs
 
 #thank the user for using the program
 shape = action_funcs.create_shape()
+shape.calc_peri()
+shape.calc_area()
 print(shape.show_info())

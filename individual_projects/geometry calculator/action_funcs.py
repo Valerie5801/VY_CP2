@@ -19,17 +19,26 @@ def create_shape():
             rect_len = helpers.check_num()
             print("What is the width of the rectangle?")
             rect_height = helpers.check_num()
-            return shape_classes.Rectangle(rect_len, rect_height)
+            rectangle = shape_classes.Rectangle(rect_len, rect_height)
+            rectangle.calc_peri()
+            rectangle.calc_area()
+            return rectangle
         
         case "Square":
             print("What is the side of the square?")
             square_side = helpers.check_num()
-            return shape_classes.Square(square_side)
+            square = shape_classes.Square(square_side)
+            square.calc_peri()
+            square.calc_area()
+            return square
         
         case "Circle":
             print("What is the radius of the circle?")
             circ_radius = helpers.check_num()
-            return shape_classes.Circle(circ_radius)
+            circle = shape_classes.Circle(circ_radius)
+            circle.calc_peri()
+            circle.calc_area()
+            return circle
         
         case "Triangle":
             print("What is the base of the triangle?")
@@ -40,7 +49,10 @@ def create_shape():
             second_side = helpers.check_num()
             print("What is the height of the triangle?")
             tri_height = helpers.check_num()
-            return shape_classes.Triangle(tri_base, first_side, second_side, tri_height)
+            triangle = shape_classes.Triangle(tri_base, first_side, second_side, tri_height)
+            triangle.calc_peri()
+            triangle.calc_area()
+            return triangle
         
         case _:
             print("Sorry, that isn't an available shape.")
