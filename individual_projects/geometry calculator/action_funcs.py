@@ -8,7 +8,7 @@ import shape_classes
 def create_shape():
     #ask the user what shape they want
     print("Available shapes: \n\t-Rectangle \n\t-Square \n\t-Circle \n\t-Triangle")
-    ask_shape = input("What shape do you want?")
+    ask_shape = input("What shape do you want?: ")
     #ask them for the required measurements for each shape
     #make an object from the respective class of the shape that they chose. Append them to new_shape.
     #calculate the area and perimeter and append them to new_shape
