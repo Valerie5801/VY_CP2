@@ -33,12 +33,6 @@ class Rectangle:
         rectangle_info = {"Type": "Rectangle", "First Measurement": self.length, "Second Measurement": self.width, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
         return rectangle_info
 
-    #method to display all info:
-    def show_info(self):
-        return f"Length: {self.length} units\nWidth: {self.width} units\nPerimeter: {self.perimeter} units\nArea: {self.area} units\u00B2"
-        #return a string that contains the length, width, perimeter, and area
-
-
 
 #square class:
 class Square:
@@ -64,11 +58,6 @@ class Square:
         #set second, third, and fourth measurements to 0 as they don't exist
         square_info = {"Type": "Square", "First Measurement": self.side, "Second Measurement": 0, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
         return square_info
-
-    #method to display all info:
-    def show_info(self):
-        #return a string that contains the length, width, perimeter, and area
-        return f"Side: {self.side} units\nPerimeter: {self.perimeter} units\nArea: {self.area} units\u00B2"
 
 
 #circle class:
@@ -97,11 +86,6 @@ class Circle:
         #set second, third, and fourth measurements to 0 as they don't exist
         circle_info = {"Type": "Circle", "First Measurement": self.radius, "Second Measurement": 0, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
         return circle_info
-
-    #method to display all info:
-    def show_info(self):
-        #return a string that contains the length, width, perimeter, and area
-        return f"Radius: {self.radius} units\nPerimeter: {self.perimeter} units\nArea: {self.area} units\u00B2"
 
 
 #triangle class:
@@ -133,8 +117,3 @@ class Triangle:
         #set second, third, and fourth measurements to 0 as they don't exist
         triangle_info = {"Type": "Triangle", "First Measurement": self.base, "Second Measurement": self.left_side, "Third Measurement": self.right_side, "Fourth Measurement": self.height, "Perimeter": self.perimeter, "Area": self.area}
         return triangle_info
-
-    #method to display all info:
-    def show_info(self):
-        #return a string that contains the length, width, perimeter, and area
-        return f"Base: {self.base} units\nLeft Side: {self.left_side} units\nRight Side: {self.right_side} units\nHeight: {self.height} units\nPerimeter: {self.perimeter} units\nArea: {self.area} units\u00B2"

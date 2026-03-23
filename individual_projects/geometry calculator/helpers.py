@@ -79,4 +79,11 @@ def count_specific(shapes, type):
             count += 1 #add one to the counter if so
     return count+1 #add 1 because this will become the label for the shape
 
-#function to scale the shapes with 
+
+#function to scale the shapes
+
+
+#function to compare areas
+
+
+#function to compare perimeters

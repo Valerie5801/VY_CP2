@@ -100,7 +100,7 @@ def display_shapes(shapes):
 
 
 #function that lets the user do something with a specific shape:
-def scale_shape(shape):
+def scale_shape(shapes):
     #ask the user for the shape they want to view via label (the Circle #1, Circle #2, Rectangle #2 things)
     pass
 
