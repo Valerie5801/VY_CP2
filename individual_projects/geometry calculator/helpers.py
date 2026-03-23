@@ -112,8 +112,8 @@ def scale_shape(shape, scale_factor):
         perimeter = new_first + new_second + new_third + new_fourth
 
     print(f"After scaling all of {shape["Label"]}'s measurements by {scale_factor}...")
-    print(f"The Area is {area}")
-    print(f"The Perimeter is {perimeter}")
+    print(f"The new Area is {area}")
+    print(f"The new Perimeter is {perimeter}")
 
 
 #function to compare areas

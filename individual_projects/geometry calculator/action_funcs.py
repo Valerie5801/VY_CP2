@@ -125,11 +125,22 @@ def scale_shape(shapes):
 #function that lets the user compare shapes:
 def compare_shapes(first_shape, second_shape):
     #ask the user in what way they want to compare it (either area or perimeter)
+    is_greater = False
+    compare_how = input("How do you want to compare them?(by Area or Perimeter): ")
     #run the respective function
     #if it results in true, then say that the first shape's area/perimeter is greater than the second shape's area
     #if it results in false, then say that the first shape's area/perimeter is less than the second shape's area/perimeter
     #if it results in None, then say that their areas/perimeters are equal
-    pass
+    try:
+        match compare_how.strip().capitalize():
+            case "Area":
+                is_greater = helpers.area_is_greater(first_shape, second_shape)
+            case "Perimeter":
+                print("erm yessir")
+            case _:
+                print("Erm no")
+    except:
+        print("That isn't a word.")
 
 
 #function that shows a guide to the formulas:
