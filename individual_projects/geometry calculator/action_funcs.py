@@ -29,7 +29,7 @@ def create_shape(shapes):
             return rectangle
         
         case "Square":
-            print("What is the side of the square?")
+            print("What is the side length of the square?")
             square_side = helpers.check_num()
             square = shape_classes.Square(square_side)
             square.calc_peri()
@@ -53,9 +53,9 @@ def create_shape(shapes):
         case "Triangle":
             print("What is the base of the triangle?")
             tri_base = helpers.check_num()
-            print("What is the first side of the triangle?")
+            print("What is the left side length of the triangle?")
             first_side = helpers.check_num()
-            print("What is the second side of the triangle?")
+            print("What is the right side length of the triangle?")
             second_side = helpers.check_num()
             print("What is the height of the triangle?")
             tri_height = helpers.check_num()
@@ -72,9 +72,31 @@ def create_shape(shapes):
 
 
 #function that shows all the shapes with perimeter of the existing shapes:
-def display_shapes(exist_shapes):
+def display_shapes(shapes):
     #loop through the list of dictionaries and print out in the dictionary
-    pass
+    if not shapes:
+        print("No shapes have been made yet.")
+        return
+    
+    for shape in shapes:
+        print(f"\n{shape['Label']}")
+
+        #print specific labels for each measurement for each shape
+        if shape["Type"] == "Rectangle":
+            print(f"Length: {shape['First Measurement']} units")
+            print(f"Width: {shape['Second Measurement']} units")
+        elif shape["Type"] == "Square":
+            print(f"Side: {shape['First Measurement']} units")
+        elif shape["Type"] == "Circle":
+            print(f"Radius: {shape['First Measurement']} units")
+        elif shape["Type"] == "Triangle":
+            print(f"Base: {shape['First Measurement']} units")
+            print(f"Left Side: {shape['Second Measurement']} units")
+            print(f"Right: {shape['Third Measurement']} units")
+            print(f"Height: {shape['Fourth Measurement']} units")
+
+        print(f"Perimeter: {shape['Perimeter']} units")
+        print(f"Area: {shape['Area']} units\u00B2")
 
 
 #function that lets the user do something with a specific shape:

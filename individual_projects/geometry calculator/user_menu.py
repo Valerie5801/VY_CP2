@@ -9,6 +9,9 @@ def main_menu():
     #run the function that saves the CSV to a list made of dictionaries. Set it to exist_shapes.
     exist_shapes = helpers.save_csv()
     #use exist_shapes as an argument needed for anything that needs to access it.
+    if not exist_shapes:
+        print("\nThere are currently no shapes that have been made.")
+        #show that there are no shapes that have been made
     #while True loop:
     while True:
         #Show how many shapes have been created
@@ -40,7 +43,7 @@ def main_menu():
             #case 2:
             case "2":
                 #run the view shapes function (from actions)
-                action_funcs.display_shapes()
+                action_funcs.display_shapes(exist_shapes)
             #case 3:
             case "3":
                 #run the view specific function

@@ -29,13 +29,13 @@ class Rectangle:
 
     #method to save info as a dictionary in preperation for storing it in main list:
     def save_info(self):
-        #set third and fourth measurements to 0 since they don't exist
+        #set third and fourth measurements to 0 since they don't exist. They still need to be here for the sake of CSV saving
         rectangle_info = {"Type": "Rectangle", "First Measurement": self.length, "Second Measurement": self.width, "Third Measurement": 0, "Fourth Measurement": 0, "Perimeter": self.perimeter, "Area": self.area}
         return rectangle_info
 
     #method to display all info:
     def show_info(self):
-        return f"Length: {self.length}\nWidth: {self.width}\nPerimeter: {self.perimeter}\nArea: {self.area}"
+        return f"Length: {self.length} units\nWidth: {self.width} units\nPerimeter: {self.perimeter} units\nArea: {self.area} units\u00B2"
         #return a string that contains the length, width, perimeter, and area
 
 
@@ -68,7 +68,7 @@ class Square:
     #method to display all info:
     def show_info(self):
         #return a string that contains the length, width, perimeter, and area
-        return f"Side: {self.side}\nPerimeter: {self.perimeter}\nArea: {self.area}"
+        return f"Side: {self.side} units\nPerimeter: {self.perimeter} units\nArea: {self.area} units\u00B2"
 
 
 #circle class:
@@ -101,16 +101,16 @@ class Circle:
     #method to display all info:
     def show_info(self):
         #return a string that contains the length, width, perimeter, and area
-        return f"Radius: {self.radius}\nPerimeter: {self.perimeter}\nArea: {self.area}"
+        return f"Radius: {self.radius} units\nPerimeter: {self.perimeter} units\nArea: {self.area} units\u00B2"
 
 
 #triangle class:
 class Triangle:
     #initialize with parameters base, first side, second side, and triangle height:
-    def __init__(self, base, first_side, second_side, height):
+    def __init__(self, base, left_side, right_side, height):
         self.base = base
-        self.first_side = first_side
-        self.second_side = second_side
+        self.left_side = left_side
+        self.right_side = right_side
         self.height = height
         #use self.[parameter name] and set it to the corresponding parameter to store it
 
@@ -118,7 +118,7 @@ class Triangle:
     def calc_peri(self):
         #add the base, first side, and the second side. Set it to perimeter.
         #return perimeter
-        self.perimeter = self.base+self.first_side+self.second_side
+        self.perimeter = self.base+self.left_side+self.right_side
         return self.perimeter
 
     #make a method to calculate area:
@@ -131,10 +131,10 @@ class Triangle:
     #method to save info as a dictionary in preperation for storing it in main list:
     def save_info(self):
         #set second, third, and fourth measurements to 0 as they don't exist
-        triangle_info = {"Type": "Triangle", "First Measurement": self.base, "Second Measurement": self.first_side, "Third Measurement": self.second_side, "Fourth Measurement": self.height, "Perimeter": self.perimeter, "Area": self.area}
+        triangle_info = {"Type": "Triangle", "First Measurement": self.base, "Second Measurement": self.left_side, "Third Measurement": self.right_side, "Fourth Measurement": self.height, "Perimeter": self.perimeter, "Area": self.area}
         return triangle_info
 
     #method to display all info:
     def show_info(self):
         #return a string that contains the length, width, perimeter, and area
-        return f"Base: {self.base}\nFirst Side: {self.first_side}\nSecond Side: {self.second_side}\nHeight: {self.height}\nPerimeter: {self.perimeter}\nArea: {self.area}"
+        return f"Base: {self.base} units\nLeft Side: {self.left_side} units\nRight Side: {self.right_side} units\nHeight: {self.height} units\nPerimeter: {self.perimeter} units\nArea: {self.area} units\u00B2"

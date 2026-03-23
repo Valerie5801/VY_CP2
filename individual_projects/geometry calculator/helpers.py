@@ -7,7 +7,7 @@ def save_csv():
     #try the following:
     try:
         #open the provided movies list and set the mode to "r" for reading as sample:
-        with open("individual_projects\\geometry calculator\\docs\\shapes.csv", mode= "r") as sample:
+        with open("individual_projects/geometry calculator/docs/shapes.csv", mode= "r") as sample:
             #read sample and set it to the variable read_list
             read_list = csv.reader(sample)
             #make a variable that grabs the next value in the CSV reader
@@ -31,19 +31,19 @@ def save_csv():
                 #append the dictionary with the respective information (found using index values)
     #except statement here if the try doesn't work:
     except:
-        print("There are currently no shapes that have been made.")
-        #show that there are no shapes that have been made
+        print("The CSV doesn't exist.")
+        #show that the csv doesn't exist
         #Return None
         return []
     #else statement:
     else:
-        #Return library
+        #Return store_shapes
         return store_shapes
     
 
 #function for rewriting the CSV again. This will be used every time the user makes a change to their library:
 def rewrite_csv(shapes):
-    with open("individual_projects//updated personal library//new_personal_library.csv", "w", newline='') as csvfile:
+    with open("individual_projects/geometry calculator/docs/shapes.csv", "w", newline='') as csvfile:
         fieldnames = ['Type', 'Label', 'First Measurement', 'Second Measurement', 'Third Measurement', 'Fourth Measurement', 'Perimeter', 'Area']
         writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
         writer.writeheader()
