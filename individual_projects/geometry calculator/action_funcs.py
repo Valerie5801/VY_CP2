@@ -71,7 +71,7 @@ def create_shape(shapes):
             print("Sorry, that isn't an available shape.")
 
 
-#function that shows all the shapes with perimeter of the existing shapes:
+#function that shows all the shapes with parameter of the existing shapes:
 def display_shapes(shapes):
     #loop through the list of dictionaries and print out in the dictionary
     if not shapes:
@@ -102,11 +102,29 @@ def display_shapes(shapes):
 #function that lets the user do something with a specific shape:
 def scale_shape(shapes):
     #ask the user for the shape they want to view via label (the Circle #1, Circle #2, Rectangle #2 things)
+    show_shape = input('What is the shape you want to look at?(type in the label, such as "Circle 1" or "Rectangle 2"): ')
+    for shape in shapes:
+        if show_shape == shape["Type"]:
+            
+    #show the shape
+    #ask the user if they want to scale it
+    #if they do:
+        #run the scale_shape function from helpers
+        #print the area and perimeter from the scale_shape function
+    #if they don't:
+        #break
     pass
 
 
 #function that lets the user compare shapes:
 def compare_shapes(first_shape, second_shape):
+    #ask the user for the first shape they want to base the comparison off of via label
+    #ask the user for the second shape they want to use as the comparison
+    #ask the user in what way they want to compare it (either area or perimeter)
+    #run the respective function
+    #if it results in true, then say that the first shape's area/perimeter is greater than the second shape's area
+    #if it results in false, then say that the first shape's area/perimeter is less than the second shape's area/perimeter
+    #if it results in None, then say that their areas/perimeters are equal
     pass
 
 

@@ -1,6 +1,7 @@
 #VY 2nd Helper Functions for Geometry Calculator
 #import CSV
 import csv
+import math
 
 #function to save the CSV for first time when program is ran
 def save_csv():
@@ -68,7 +69,11 @@ def check_num():
 
 #function to count the shapes
 def count_shapes(shapes):
-    pass
+    #count how many items are in the list
+    counter = 0
+    for shape in shapes:
+        counter += 1
+    return counter
 
 
 #function to count a specific type of shape
@@ -81,9 +86,63 @@ def count_specific(shapes, type):
 
 
 #function to scale the shapes
+def scale_shape(shape, scale_factor):
+    area = 0
+    perimeter = 0
+    #multiply the measurements of the shape by the scale factor.
+    new_first = shape["First Measurement"] * scale_factor
+    new_second = shape["Second Measurement"] * scale_factor
+    new_third = shape["Third Measurement"] * scale_factor
+    new_fourth = shape["Fourth Measurement"] * scale_factor
+    #find the area. use an if/else statement to get the different areas for each shape.
+    if shape["Type"] == "Rectangle":
+        area = new_first * new_second
+    elif shape["Type"] == "Square":
+        area = new_first**2
+    elif shape["Type"] == "Circle":
+        area = (new_first**2)*math.pi
+    elif shape["Type"] == "Triangle":
+        area = new_first * new_fourth * 0.5
+
+    #find the perimeter. Just add all of the measurements together. (it will be the same for al shapes except Circle)
+
+    if shape["Type"] == "Circle":
+        perimeter = new_first*2*math.pi
+    else:
+        perimeter = new_first + new_second + new_third + new_fourth
+
+    print(f"After scaling all of {shape["Label"]}'s measurements by {scale_factor}...")
+    print(f"The Area is {area}")
+    print(f"The Perimeter is {perimeter}")
 
 
 #function to compare areas
+def area_is_greater(first_shape, second_shape):
+    #get the areas of the first and second shapes.
+    #compare their values.
+    #if the first shape's area is greater than the second shape's area:
+    if first_shape["Area"] > second_shape["Area"]:
+        #return true
+        return True
+    #if the second shape's area is greater than the first shape's area:
+    elif first_shape["Area"] < second_shape["Area"]:
+        #return false
+        return False
+    else: #failsafe in case they are the same
+        return None
 
 
 #function to compare perimeters
+def peri_is_greater(first_shape, second_shape):
+    #get the perimeters of the first and second shapes
+    #compare their values
+    #if the first shape's perimeter is greater than the second shape's perimeter:
+    if first_shape["Perimeter"] > second_shape["Perimeter"]:
+        #return true
+        return True
+    #else:
+    elif first_shape["Perimeter"] < second_shape["Perimeter"]:
+        #return false
+        return False
+    else: #failsafe
+        return None
