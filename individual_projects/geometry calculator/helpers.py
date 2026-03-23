@@ -22,16 +22,19 @@ def save_csv():
                         next_item[1]: line[1],
                         next_item[2]: line[2],
                         next_item[3]: line[3],
-                        next_item[4]: line[4]
+                        next_item[4]: line[4],
+                        next_item[5]: line[5],
+                        next_item[6]: line[6],
+                        next_item[7]: line[7]
                     }
                 )
                 #append the dictionary with the respective information (found using index values)
     #except statement here if the try doesn't work:
     except:
-        print("The CSV doesn't exist.")
-        #show that the CSV doesn't exist.
+        print("There are currently no shapes that have been made.")
+        #show that there are no shapes that have been made
         #Return None
-        return None
+        return []
     #else statement:
     else:
         #Return library
@@ -67,5 +70,13 @@ def check_num():
 def count_shapes(shapes):
     pass
 
+
+#function to count a specific type of shape
+def count_specific(shapes, type):
+    count = 0
+    for shape in shapes: #loop through the shapes
+        if shape["Type"] == type: #check if the type of the shape matches the given type
+            count += 1 #add one to the counter if so
+    return count+1 #add 1 because this will become the label for the shape
 
 #function to scale the shapes with 

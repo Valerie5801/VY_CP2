@@ -20,7 +20,7 @@ def main_menu():
             #5. Formula guide
             #6. Exit
 
-        print("You may: \n1. Create a new shape\n2. View all shapes\n3. Select a shape\n4.Compare two shapes\n5. See the formula guide\n6.Exit")
+        print("\nYou may: \n1. Create a new shape\n2. View all shapes\n3. Select a shape\n4.Compare two shapes\n5. See the formula guide\n6.Exit")
 
         #ask for the user's action as an input and set it to user_action
         user_action = input("What do you want to do?: ")
@@ -30,7 +30,13 @@ def main_menu():
             #case 1:
             case "1":
                 #run the create new shape function (from actions)
-                action_funcs.create_shape()
+                new_shape = action_funcs.create_shape(exist_shapes)
+                exist_shapes.append(new_shape)
+                try:
+                    exist_shapes.remove("placeholder")
+                except:
+                    pass
+                print(f"{new_shape['Label']} has been created!")
             #case 2:
             case "2":
                 #run the view shapes function (from actions)

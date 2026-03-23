@@ -5,10 +5,11 @@ import helpers
 import shape_classes
 
 #function for making a new shape:
-def create_shape():
+def create_shape(shapes):
+    label_num = 0
     #ask the user what shape they want
-    print("Available shapes: \n\t-Rectangle \n\t-Square \n\t-Circle \n\t-Triangle")
-    ask_shape = input("What shape do you want?: ")
+    print("\nAvailable shapes: \n\t-Rectangle \n\t-Square \n\t-Circle \n\t-Triangle")
+    ask_shape = input('What shape do you want?(write like "Rectangle"): ')
     #ask them for the required measurements for each shape
     #make an object from the respective class of the shape that they chose. Append them to new_shape.
     #calculate the area and perimeter and append them to new_shape
@@ -22,6 +23,9 @@ def create_shape():
             rectangle = shape_classes.Rectangle(rect_len, rect_height)
             rectangle.calc_peri()
             rectangle.calc_area()
+            rectangle = rectangle.save_info()
+            label_num = helpers.count_specific(shapes, "Rectangle")
+            rectangle["Label"] = f"Rectangle {label_num}"
             return rectangle
         
         case "Square":
@@ -30,6 +34,9 @@ def create_shape():
             square = shape_classes.Square(square_side)
             square.calc_peri()
             square.calc_area()
+            square = square.save_info()
+            label_num = helpers.count_specific(shapes, "Square")
+            square["Label"] = f"Square {label_num}"
             return square
         
         case "Circle":
@@ -38,6 +45,9 @@ def create_shape():
             circle = shape_classes.Circle(circ_radius)
             circle.calc_peri()
             circle.calc_area()
+            circle = circle.save_info()
+            label_num = helpers.count_specific(shapes, "Circle")
+            circle["Label"] = f"Circle {label_num}"
             return circle
         
         case "Triangle":
@@ -52,6 +62,9 @@ def create_shape():
             triangle = shape_classes.Triangle(tri_base, first_side, second_side, tri_height)
             triangle.calc_peri()
             triangle.calc_area()
+            triangle = triangle.save_info()
+            label_num = helpers.count_specific(shapes, "Triangle")
+            triangle["Label"] = f"Triangle {label_num}"
             return triangle
         
         case _:
