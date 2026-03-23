@@ -101,12 +101,18 @@ def display_shapes(shapes):
 
 #function that lets the user do something with a specific shape:
 def scale_shape(shapes):
-    #ask the user for the shape they want to view via label (the Circle #1, Circle #2, Rectangle #2 things)
-    show_shape = input('What is the shape you want to look at?(type in the label, such as "Circle 1" or "Rectangle 2"): ')
-    for shape in shapes:
-        if show_shape == shape["Type"]:
-            
+    shape_exist = False
+    while not shape_exist:
+        #ask the user for the shape they want to view via label (the Circle #1, Circle #2, Rectangle #2 things)
+        show_shape = input('What is the shape you want to look at?(type in the label, such as "Circle 1" or "Rectangle 2"): ')
+        for shape in shapes:
+            if show_shape == shape["Type"]:
+                shape_exist = True
+            else:
+                print("That shape doesn't exist. Please try again.")
     #show the shape
+
+
     #ask the user if they want to scale it
     #if they do:
         #run the scale_shape function from helpers
@@ -118,8 +124,6 @@ def scale_shape(shapes):
 
 #function that lets the user compare shapes:
 def compare_shapes(first_shape, second_shape):
-    #ask the user for the first shape they want to base the comparison off of via label
-    #ask the user for the second shape they want to use as the comparison
     #ask the user in what way they want to compare it (either area or perimeter)
     #run the respective function
     #if it results in true, then say that the first shape's area/perimeter is greater than the second shape's area
@@ -130,7 +134,6 @@ def compare_shapes(first_shape, second_shape):
 
 #function that shows a guide to the formulas:
 def formula_guide():
-    pass
     #ask the user what formulas they want to see. they can choose:
         #-All area formulas
         #-All perimeter formulas
@@ -140,3 +143,62 @@ def formula_guide():
         #-Triangle formulas
 
     #Display the respective information depending on what they choose (for example if they chose area, show all the area formulas)
+    rectangle_forms = {
+        "Area": "Length x Width",
+        "Perimeter": "2(Length + Width)"
+    }
+
+    square_forms = {
+        "Area": "Side\u00B2",
+        "Perimeter": "4 x Side"
+    }
+
+    circle_forms = {
+        "Area": "πr\u00B2",
+        "Perimeter": "2πr"
+    }
+
+    tri_forms = {
+        "Area": "Base x Height x 0.5",
+        "Perimeter": "Base + First Side + Second Side"
+    }
+
+
+    print("This is the formula guide.")
+    while True:
+        print("You may: \n1. View all Area formulas\n2. View all Perimeter formulas\n3. View the Rectangle formulas\n4. View the Square formulas\n5. View the Circle formulas\n6. View the Triangle formulas\n7. Exit")
+        user_view = input("What would you like to do?")
+
+        match user_view:
+            case "1":
+                print("Area formulas:")
+                print(f"\tRectangle Area: {rectangle_forms['Area']}")
+                print(f"\tSquare Area: {square_forms['Area']}")
+                print(f"\tCircle Area: {circle_forms['Area']}")
+                print(f"\tTriangle Area: {tri_forms['Area']}")
+            case "2":
+                print("Perimeter formulas:")
+                print(f"\tRectangle Perimeter: {rectangle_forms['Perimeter']}")
+                print(f"\tSquare Perimeter: {square_forms['Perimeter']}")
+                print(f"\tCircle Perimeter: {circle_forms['Perimeter']}")
+                print(f"\tTriangle Perimeter: {tri_forms['Perimeter']}")
+            case "3":
+                print("Rectangle formulas:")
+                print(f"\tArea: {rectangle_forms['Area']}")
+                print(f"\tPerimeter: {rectangle_forms['Perimeter']}")
+            case "4":
+                print("Square formulas:")
+                print(f"\tArea: {square_forms['Area']}")
+                print(f"\tPerimeter: {square_forms['Perimeter']}")
+            case "5":
+                print("Circle formulas:")
+                print(f"\tArea: {circle_forms['Area']}")
+                print(f"\tPerimeter: {circle_forms['Perimeter']}")
+            case "6":
+                print("Triangle formulas:")
+                print(f"\tArea: {tri_forms['Area']}")
+                print(f"\tPerimeter: {tri_forms['Perimeter']}")
+            case "7":
+                break
+            case _:
+                print("That isn't an option, please try again.")

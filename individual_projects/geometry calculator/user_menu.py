@@ -46,12 +46,18 @@ def main_menu():
                 action_funcs.display_shapes(exist_shapes)
             #case 3:
             case "3":
+                #ask the user what shapes they want to use
                 #run the view specific function
                 action_funcs.scale_shape()
             #case 4:
             case "4":
-                #run the compare shapes function
-                action_funcs.compare_shapes()
+                #check if there is more than one shape
+                shape_count = helpers.count_shapes()
+                if shape_count > 1:
+                    #run the compare shapes function
+                    action_funcs.compare_shapes()
+                else:
+                    print(f"Only {shape_count} shapes exist. You need at least two shapes to compare them.")
             #case 5:
             case "5":
                 #run the formula guide function
