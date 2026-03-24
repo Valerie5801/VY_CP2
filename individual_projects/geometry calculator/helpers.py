@@ -2,6 +2,7 @@
 #import CSV
 import csv
 import math
+import time
 
 #function to save the CSV for first time when program is ran
 def save_csv():
@@ -95,10 +96,10 @@ def scale_shape(shape, scale_factor):
     area = 0
     perimeter = 0
     #multiply the measurements of the shape by the scale factor.
-    new_first = shape["First Measurement"] * scale_factor
-    new_second = shape["Second Measurement"] * scale_factor
-    new_third = shape["Third Measurement"] * scale_factor
-    new_fourth = shape["Fourth Measurement"] * scale_factor
+    new_first = float(shape['First Measurement']) * scale_factor
+    new_second = float(shape['Second Measurement']) * scale_factor
+    new_third = float(shape['Third Measurement']) * scale_factor
+    new_fourth = float(shape['Fourth Measurement']) * scale_factor
     #find the area. use an if/else statement to get the different areas for each shape.
     if shape["Type"] == "Rectangle":
         area = new_first * new_second
@@ -116,7 +117,9 @@ def scale_shape(shape, scale_factor):
     else:
         perimeter = new_first + new_second + new_third + new_fourth
 
-    print(f"After scaling all of {shape["Label"]}'s measurements by {scale_factor}...")
+    print(f"Scaling {shape['Label']} by {scale_factor}...")
+
+    print(f"After scaling all of {shape['Label']}'s measurements by {scale_factor}...")
     print(f"The new Area is {area}")
     print(f"The new Perimeter is {perimeter}")
 
@@ -124,7 +127,7 @@ def scale_shape(shape, scale_factor):
 
 #function to show a specific shape
 def show_specific(shape):
-    print(f"\n{shape['Label']}")
+    print(f"{shape['Label']}")
 
     #print specific labels for each measurement for each shape
     if shape["Type"] == "Rectangle":
@@ -147,6 +150,8 @@ def show_specific(shape):
 
 #function to compare areas
 def area_is_greater(first_area, second_area):
+    first_area = float(first_area)
+    second_area = float(second_area)
     #get the areas of the first and second shapes.
     #compare their values.
     #if the first shape's area is greater than the second shape's area:
@@ -164,6 +169,8 @@ def area_is_greater(first_area, second_area):
 
 #function to compare perimeters
 def peri_is_greater(first_peri, second_peri):
+    first_peri = float(first_peri)
+    second_peri = float(second_peri)
     #get the perimeters of the first and second shapes
     #compare their values
     #if the first shape's perimeter is greater than the second shape's perimeter:

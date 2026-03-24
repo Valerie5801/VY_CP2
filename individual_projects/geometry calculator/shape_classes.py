@@ -72,14 +72,14 @@ class Circle:
         #multiply the radius by 2 and pi (accessed via the math module) and set it to perimeter
         #return perimeter
         self.perimeter = self.radius*2*math.pi
-        return self.perimeter
+        return round(self.perimeter, 2)
 
     #make a method to calculate area:
     def calc_area(self):
         #square the radius and multiply it by pi and set it to area
         #return area
         self.area = (self.radius**2)*math.pi
-        return self.area
+        return round(self.area, 2)
 
     #method to save info as a dictionary in preperation for storing it in main list:
     def save_info(self):

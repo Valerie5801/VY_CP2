@@ -3,6 +3,7 @@
 import action_funcs
 #import helpers
 import helpers
+import time
 
 #main_menu function:
 def main_menu():
@@ -13,6 +14,7 @@ def main_menu():
         print("\nThere are currently no shapes that have been made.")
         #show that there are no shapes that have been made
     #while True loop:
+    print("")
     while True:
         #Show how many shapes have been created
         #let the user know what they can do:
@@ -24,11 +26,13 @@ def main_menu():
             #6. Exit
 
         shape_count = helpers.count_shapes(exist_shapes)
-        print(f"\n{shape_count} shapes have been made.")
-        print("\nYou may: \n1. Create a new shape\n2. View all shapes\n3. Select a shape\n4. Compare two shapes\n5. See the formula guide\n6. Exit")
+        time.sleep(1)
+        print("\nMAIN MENU")
+        print(f"{shape_count} shapes have been made.")
+        print("\nYou may: \n1. Create a new shape\n2. Remove a Shape\n3. View all shapes\n4. Select a shape\n5. Compare two shapes\n6. See the formula guide\n7. Exit")
 
         #ask for the user's action as an input and set it to user_action
-        user_action = input("\nWhat do you want to do?: ")
+        user_action = input("\nWhat do you want to do?(please type your response as a number, like 1): ")
         
         #match user_action here:
         match user_action:
@@ -41,19 +45,22 @@ def main_menu():
                     exist_shapes.remove("placeholder")
                 except:
                     pass
-                print(f"{new_shape['Label']} has been created!")
+                print(f"{new_shape['Label']} has been created!\n")
                 helpers.show_specific(new_shape)
             #case 2:
             case "2":
-                #run the view shapes function (from actions)
-                action_funcs.display_shapes(exist_shapes)
+                exist_shapes = action_funcs.remove_shape(exist_shapes)
             #case 3:
             case "3":
+                #run the view shapes function (from actions)
+                action_funcs.display_shapes(exist_shapes)
+            #case 4:
+            case "4":
                 #ask the user what shapes they want to use
                 #run the view specific function
                 action_funcs.scale_shape(exist_shapes)
-            #case 4:
-            case "4":
+            #case 5:
+            case "5":
                 #check if there is more than one shape
                 check_shape = False
                 if shape_count > 1:
@@ -87,12 +94,12 @@ def main_menu():
                             break
                 else:
                     print(f"Only {shape_count} shapes exist. You need at least two shapes to compare them.")
-            #case 5:
-            case "5":
-                #run the formula guide function
-                action_funcs.formula_guide()
             #case 6:
             case "6":
+                #run the formula guide function
+                action_funcs.formula_guide()
+            #case 7:
+            case "7":
                 #break
                 break
             #case _:

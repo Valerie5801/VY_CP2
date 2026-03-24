@@ -3,6 +3,7 @@
 #import shape_classes
 import helpers
 import shape_classes
+import time
 
 #function for making a new shape:
 def create_shape(shapes):
@@ -78,10 +79,36 @@ def display_shapes(shapes):
     if not shapes:
         print("No shapes have been made yet.")
         return
-    print("Shape Library:\n")
+    print("\nShape Library:")
     for shape in shapes:
         helpers.show_specific(shape)
-    print("")
+        print("")
+
+
+#function for removing a shape:
+def remove_shape(shapes):
+    found_shape = ""
+    #display all the shapes using display_shapes
+    display_shapes(shapes)
+    #ask the user what shape they want to remove via label.
+    remove_shape = input("What shape do you want to remove?(please type the label of the shape): ")
+    #loop through the dictionary and see if it exists
+    for shape in shapes:
+        if remove_shape == shape['Label']:
+            found_shape = shape
+        else:
+            pass
+
+    if found_shape:
+        print(f"{found_shape['Label']} has been successfully removed.")
+        shapes = [shape for shape in shapes if shape['Label'] != found_shape['Label']]
+    else:
+        print("That shape doesn't exist.")
+
+    return shapes
+
+    #if it does, remove it from the shapes and tell the user it has been removed
+    #if it doesn't, say that the label doesn't exist.
 
 
 #function that lets the user do something with a specific shape:
@@ -89,7 +116,8 @@ def scale_shape(shapes):
     shape_exist = False
     while not shape_exist:
         #ask the user for the shape they want to view via label (the Circle #1, Circle #2, Rectangle #2 things)
-        show_shape = input('\nWhat is the shape you want to look at?(type in the label, such as "Circle 1" or "Rectangle 2". To exit, type "exit"): ')
+        print('\nPlease type in the label, such as "Circle 1" or "Rectangle 2". To exit, type "exit"')
+        show_shape = input('What is the shape you want to look at?: ')
         if show_shape.strip().lower() == "exit":
             return
         for shape in shapes:
@@ -112,13 +140,14 @@ def scale_shape(shapes):
             #break
         if ask_scale == "y":
             while True:
+                print("Please type in a decimal if it is not a whole number.")
                 scale_fact = input("By what number do you want to scale by?: ")
                 try:
                     scale_fact = float(scale_fact)
-                    helpers.scale_shape(found_shape, scale_fact)
                     break
                 except:
                     print("That isn't a number.")
+            helpers.scale_shape(found_shape, scale_fact)
         elif ask_scale == "n":
             break
         else:
@@ -157,12 +186,15 @@ def compare_shapes(first_shape, second_shape):
     if compare_how == "Exit":
         return
 
+    print("Comparing shapes...")
+    time.sleep(1)
+
     if is_greater:
-        print(f"{first_shape['Label']} has a larger {compare_how} than {second_shape['Label']}.")
+        print(f"{first_shape['Label']} has a LARGER {compare_how} than {second_shape['Label']}.")
     elif is_greater is None:
-        print(f"{first_shape['Label']} has the same {compare_how} as {second_shape['Label']}.")
+        print(f"{first_shape['Label']} has THE SAME {compare_how} as {second_shape['Label']}.")
     elif not is_greater:
-        print(f"{first_shape['Label']} has a smaller {compare_how} than {second_shape['Label']}.")
+        print(f"{first_shape['Label']} has a SMALLER {compare_how} than {second_shape['Label']}.")
 
 
 
