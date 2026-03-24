@@ -78,9 +78,10 @@ def display_shapes(shapes):
     if not shapes:
         print("No shapes have been made yet.")
         return
-    
+    print("Shape Library:\n")
     for shape in shapes:
         helpers.show_specific(shape)
+    print("")
 
 
 #function that lets the user do something with a specific shape:
@@ -88,40 +89,40 @@ def scale_shape(shapes):
     shape_exist = False
     while not shape_exist:
         #ask the user for the shape they want to view via label (the Circle #1, Circle #2, Rectangle #2 things)
-        show_shape = input('What is the shape you want to look at?(type in the label, such as "Circle 1" or "Rectangle 2"): ')
+        show_shape = input('\nWhat is the shape you want to look at?(type in the label, such as "Circle 1" or "Rectangle 2". To exit, type "exit"): ')
+        if show_shape.strip().lower() == "exit":
+            return
         for shape in shapes:
-            if show_shape == shape["Type"]:
+            if show_shape == shape["Label"]:
                 shape_exist = True
                 found_shape = shape
-            else:
-                print("That shape doesn't exist. Please try again.")
+                break
+        if not shape_exist:
+            print("That shape doesn't exist. Please try again.")
     #show the shape
     helpers.show_specific(found_shape)
 
     #ask the user if they want to scale it
-    ask_scale = input("Do you want to scale(multiplying a shape's dimensions by a scale factor) the shape?(type in y/n): ")
-    #if they do:
-        #run the scale_shape function from helpers
-        #print the area and perimeter from the scale_shape function
-    #if they don't:
-        #break
-    try:
-        match ask_scale.strip().lower():
-            case "y":
-                while True:
-                    scale_fact = input("By what number do you want to scale by?: ")
-                    try:
-                        scale_fact = float(scale_fact)
-                        scale_shape(found_shape, scale_fact)
-                        break
-                    except:
-                        print("That isn't a number.")
-            case "n":
-                return
-            case _:
-                print("That isn't an option.")
-    except:
-        print("That isn't a word.")
+    while True:
+        ask_scale = input("\nDo you want to scale(multiplying a shape's dimensions by a scale factor) the shape?(type in y/n): ")
+        #if they do:
+            #run the scale_shape function from helpers
+            #print the area and perimeter from the scale_shape function
+        #if they don't:
+            #break
+        if ask_scale == "y":
+            while True:
+                scale_fact = input("By what number do you want to scale by?: ")
+                try:
+                    scale_fact = float(scale_fact)
+                    helpers.scale_shape(found_shape, scale_fact)
+                    break
+                except:
+                    print("That isn't a number.")
+        elif ask_scale == "n":
+            break
+        else:
+            print("That isn't an option.")
 
 
 
@@ -130,23 +131,31 @@ def compare_shapes(first_shape, second_shape):
     #ask the user in what way they want to compare it (either area or perimeter)
     is_greater = False
     while True:
-        compare_how = input("How do you want to compare them?(by Area or Perimeter): ")
+        compare_how = input('\nHow do you want to compare them?(by Area or Perimeter. Type "exit" to exit): ')
+        try:
+            compare_how = compare_how.strip().capitalize()
+        except:
+            print("That isn't a word.")
+            return
         #run the respective function
         #if it results in true, then say that the first shape's area/perimeter is greater than the second shape's area
         #if it results in false, then say that the first shape's area/perimeter is less than the second shape's area/perimeter
         #if it results in None, then say that their areas/perimeters are equal
-        try:
-            match compare_how.strip().capitalize():
-                case "Area":
-                    is_greater = helpers.area_is_greater(first_shape, second_shape)
-                    break
-                case "Perimeter":
-                    is_greater = helpers.peri_is_greater(first_shape, second_shape)
-                    break
-                case _:
-                    print("That isn't an option.")
-        except:
-            print("That isn't a word.")
+        if compare_how == "Exit":
+             break
+
+        match compare_how:
+            case "Area":
+                is_greater = helpers.area_is_greater(first_shape["Area"], second_shape["Area"])
+                break
+            case "Perimeter":
+                is_greater = helpers.peri_is_greater(first_shape["Perimeter"], second_shape["Perimeter"])
+                break
+            case _:
+                print("That isn't an option.")
+
+    if compare_how == "Exit":
+        return
 
     if is_greater:
         print(f"{first_shape['Label']} has a larger {compare_how} than {second_shape['Label']}.")
@@ -192,35 +201,35 @@ def formula_guide():
     print("This is the formula guide.")
     while True:
         print("You may: \n1. View all Area formulas\n2. View all Perimeter formulas\n3. View the Rectangle formulas\n4. View the Square formulas\n5. View the Circle formulas\n6. View the Triangle formulas\n7. Exit")
-        user_view = input("What would you like to do?")
+        user_view = input("\nWhat would you like to do?: ")
 
         match user_view:
             case "1":
-                print("Area formulas:")
+                print("\nArea formulas:")
                 print(f"\tRectangle Area: {rectangle_forms['Area']}")
                 print(f"\tSquare Area: {square_forms['Area']}")
                 print(f"\tCircle Area: {circle_forms['Area']}")
                 print(f"\tTriangle Area: {tri_forms['Area']}")
             case "2":
-                print("Perimeter formulas:")
+                print("\nPerimeter formulas:")
                 print(f"\tRectangle Perimeter: {rectangle_forms['Perimeter']}")
                 print(f"\tSquare Perimeter: {square_forms['Perimeter']}")
                 print(f"\tCircle Perimeter: {circle_forms['Perimeter']}")
                 print(f"\tTriangle Perimeter: {tri_forms['Perimeter']}")
             case "3":
-                print("Rectangle formulas:")
+                print("\nRectangle formulas:")
                 print(f"\tArea: {rectangle_forms['Area']}")
                 print(f"\tPerimeter: {rectangle_forms['Perimeter']}")
             case "4":
-                print("Square formulas:")
+                print("\nSquare formulas:")
                 print(f"\tArea: {square_forms['Area']}")
                 print(f"\tPerimeter: {square_forms['Perimeter']}")
             case "5":
-                print("Circle formulas:")
+                print("\nCircle formulas:")
                 print(f"\tArea: {circle_forms['Area']}")
                 print(f"\tPerimeter: {circle_forms['Perimeter']}")
             case "6":
-                print("Triangle formulas:")
+                print("\nTriangle formulas:")
                 print(f"\tArea: {tri_forms['Area']}")
                 print(f"\tPerimeter: {tri_forms['Perimeter']}")
             case "7":

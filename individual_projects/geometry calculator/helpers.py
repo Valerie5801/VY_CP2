@@ -146,15 +146,15 @@ def show_specific(shape):
 
 
 #function to compare areas
-def area_is_greater(first_shape, second_shape):
+def area_is_greater(first_area, second_area):
     #get the areas of the first and second shapes.
     #compare their values.
     #if the first shape's area is greater than the second shape's area:
-    if first_shape["Area"] > second_shape["Area"]:
+    if first_area > second_area:
         #return true
         return True
     #if the second shape's area is greater than the first shape's area:
-    elif first_shape["Area"] < second_shape["Area"]:
+    elif first_area < second_area:
         #return false
         return False
     else: #failsafe in case they are the same
@@ -163,15 +163,15 @@ def area_is_greater(first_shape, second_shape):
 
 
 #function to compare perimeters
-def peri_is_greater(first_shape, second_shape):
+def peri_is_greater(first_peri, second_peri):
     #get the perimeters of the first and second shapes
     #compare their values
     #if the first shape's perimeter is greater than the second shape's perimeter:
-    if first_shape["Perimeter"] > second_shape["Perimeter"]:
+    if first_peri > second_peri:
         #return true
         return True
     #else:
-    elif first_shape["Perimeter"] < second_shape["Perimeter"]:
+    elif first_peri < second_peri:
         #return false
         return False
     else: #failsafe

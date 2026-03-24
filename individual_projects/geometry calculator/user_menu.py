@@ -24,8 +24,8 @@ def main_menu():
             #6. Exit
 
         shape_count = helpers.count_shapes(exist_shapes)
-        print(f"{shape_count} shapes have been made.")
-        print("\nYou may: \n1. Create a new shape\n2. View all shapes\n3. Select a shape\n4.Compare two shapes\n5. See the formula guide\n6.Exit")
+        print(f"\n{shape_count} shapes have been made.")
+        print("\nYou may: \n1. Create a new shape\n2. View all shapes\n3. Select a shape\n4. Compare two shapes\n5. See the formula guide\n6. Exit")
 
         #ask for the user's action as an input and set it to user_action
         user_action = input("\nWhat do you want to do?: ")
@@ -42,6 +42,7 @@ def main_menu():
                 except:
                     pass
                 print(f"{new_shape['Label']} has been created!")
+                helpers.show_specific(new_shape)
             #case 2:
             case "2":
                 #run the view shapes function (from actions)
@@ -54,21 +55,36 @@ def main_menu():
             #case 4:
             case "4":
                 #check if there is more than one shape
+                check_shape = False
                 if shape_count > 1:
-                    while True:
-                        shape_one = input('What shape do you want the comparison to be based on/the first shape?(use the label name such as "Circle 1"): ')
-                        if shape_one not in exist_shapes:
+                    while not check_shape:
+                        shape_one = input('\nWhat shape do you want the comparison to be based on/the first shape?(use the label name such as "Circle 1"): ')
+                        for shape in exist_shapes:
+                            if shape_one == shape["Label"]:
+                                check_shape = True
+                                first_shape = shape
+                            else:
+                                pass
+                        if not check_shape:
                             print("That isn't an existing shape. Please use the label given to the shape.")
                         else:
                             break
-                    while True:
+
+                    check_shape = False
+                    while not check_shape:
                         shape_two = input('What shape do you want to compare to/the second shape?(use the label name such as "Circle 1"): ')
-                        if shape_two not in exist_shapes:
+                        for shape in exist_shapes:
+                            if shape_two == shape["Label"]:
+                                second_shape = shape
+                                check_shape = True
+                            else:
+                                pass
+                        if not check_shape:
                             print("That isn't an existing shape. Please use the label given to the shape.")
                         else:
+                            #run the compare shapes function
+                            action_funcs.compare_shapes(first_shape, second_shape)
                             break
-                    #run the compare shapes function
-                    action_funcs.compare_shapes(shape_one, shape_two)
                 else:
                     print(f"Only {shape_count} shapes exist. You need at least two shapes to compare them.")
             #case 5:
