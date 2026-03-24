@@ -1,7 +1,7 @@
 # Geometry Calculator
 ***
 
-![The shape library and menu shown in the terminal:](individual_projects/geometry calculator/README/geometry_calc_menu.png)
+![The shape library and menu shown in the terminal:](geometry_calc_menu.png)
 ***
 This is a program that lets the user create, remove, view, scale, and compare shapes. There is also a formula guide in this program.
 
