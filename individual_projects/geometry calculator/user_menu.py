@@ -23,10 +23,12 @@ def main_menu():
             #5. Formula guide
             #6. Exit
 
+        shape_count = helpers.count_shapes(exist_shapes)
+        print(f"{shape_count} shapes have been made.")
         print("\nYou may: \n1. Create a new shape\n2. View all shapes\n3. Select a shape\n4.Compare two shapes\n5. See the formula guide\n6.Exit")
 
         #ask for the user's action as an input and set it to user_action
-        user_action = input("What do you want to do?: ")
+        user_action = input("\nWhat do you want to do?: ")
         
         #match user_action here:
         match user_action:
@@ -48,14 +50,25 @@ def main_menu():
             case "3":
                 #ask the user what shapes they want to use
                 #run the view specific function
-                action_funcs.scale_shape()
+                action_funcs.scale_shape(exist_shapes)
             #case 4:
             case "4":
                 #check if there is more than one shape
-                shape_count = helpers.count_shapes()
                 if shape_count > 1:
+                    while True:
+                        shape_one = input('What shape do you want the comparison to be based on/the first shape?(use the label name such as "Circle 1"): ')
+                        if shape_one not in exist_shapes:
+                            print("That isn't an existing shape. Please use the label given to the shape.")
+                        else:
+                            break
+                    while True:
+                        shape_two = input('What shape do you want to compare to/the second shape?(use the label name such as "Circle 1"): ')
+                        if shape_two not in exist_shapes:
+                            print("That isn't an existing shape. Please use the label given to the shape.")
+                        else:
+                            break
                     #run the compare shapes function
-                    action_funcs.compare_shapes()
+                    action_funcs.compare_shapes(shape_one, shape_two)
                 else:
                     print(f"Only {shape_count} shapes exist. You need at least two shapes to compare them.")
             #case 5:

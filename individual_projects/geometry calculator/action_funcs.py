@@ -71,6 +71,7 @@ def create_shape(shapes):
             print("Sorry, that isn't an available shape.")
 
 
+
 #function that shows all the shapes with parameter of the existing shapes:
 def display_shapes(shapes):
     #loop through the list of dictionaries and print out in the dictionary
@@ -79,24 +80,7 @@ def display_shapes(shapes):
         return
     
     for shape in shapes:
-        print(f"\n{shape['Label']}")
-
-        #print specific labels for each measurement for each shape
-        if shape["Type"] == "Rectangle":
-            print(f"Length: {shape['First Measurement']} units")
-            print(f"Width: {shape['Second Measurement']} units")
-        elif shape["Type"] == "Square":
-            print(f"Side: {shape['First Measurement']} units")
-        elif shape["Type"] == "Circle":
-            print(f"Radius: {shape['First Measurement']} units")
-        elif shape["Type"] == "Triangle":
-            print(f"Base: {shape['First Measurement']} units")
-            print(f"Left Side: {shape['Second Measurement']} units")
-            print(f"Right: {shape['Third Measurement']} units")
-            print(f"Height: {shape['Fourth Measurement']} units")
-
-        print(f"Perimeter: {shape['Perimeter']} units")
-        print(f"Area: {shape['Area']} units\u00B2")
+        helpers.show_specific(shape)
 
 
 #function that lets the user do something with a specific shape:
@@ -108,39 +92,69 @@ def scale_shape(shapes):
         for shape in shapes:
             if show_shape == shape["Type"]:
                 shape_exist = True
+                found_shape = shape
             else:
                 print("That shape doesn't exist. Please try again.")
     #show the shape
-
+    helpers.show_specific(found_shape)
 
     #ask the user if they want to scale it
+    ask_scale = input("Do you want to scale(multiplying a shape's dimensions by a scale factor) the shape?(type in y/n): ")
     #if they do:
         #run the scale_shape function from helpers
         #print the area and perimeter from the scale_shape function
     #if they don't:
         #break
-    pass
+    try:
+        match ask_scale.strip().lower():
+            case "y":
+                while True:
+                    scale_fact = input("By what number do you want to scale by?: ")
+                    try:
+                        scale_fact = float(scale_fact)
+                        scale_shape(found_shape, scale_fact)
+                        break
+                    except:
+                        print("That isn't a number.")
+            case "n":
+                return
+            case _:
+                print("That isn't an option.")
+    except:
+        print("That isn't a word.")
+
 
 
 #function that lets the user compare shapes:
 def compare_shapes(first_shape, second_shape):
     #ask the user in what way they want to compare it (either area or perimeter)
     is_greater = False
-    compare_how = input("How do you want to compare them?(by Area or Perimeter): ")
-    #run the respective function
-    #if it results in true, then say that the first shape's area/perimeter is greater than the second shape's area
-    #if it results in false, then say that the first shape's area/perimeter is less than the second shape's area/perimeter
-    #if it results in None, then say that their areas/perimeters are equal
-    try:
-        match compare_how.strip().capitalize():
-            case "Area":
-                is_greater = helpers.area_is_greater(first_shape, second_shape)
-            case "Perimeter":
-                print("erm yessir")
-            case _:
-                print("Erm no")
-    except:
-        print("That isn't a word.")
+    while True:
+        compare_how = input("How do you want to compare them?(by Area or Perimeter): ")
+        #run the respective function
+        #if it results in true, then say that the first shape's area/perimeter is greater than the second shape's area
+        #if it results in false, then say that the first shape's area/perimeter is less than the second shape's area/perimeter
+        #if it results in None, then say that their areas/perimeters are equal
+        try:
+            match compare_how.strip().capitalize():
+                case "Area":
+                    is_greater = helpers.area_is_greater(first_shape, second_shape)
+                    break
+                case "Perimeter":
+                    is_greater = helpers.peri_is_greater(first_shape, second_shape)
+                    break
+                case _:
+                    print("That isn't an option.")
+        except:
+            print("That isn't a word.")
+
+    if is_greater:
+        print(f"{first_shape['Label']} has a larger {compare_how} than {second_shape['Label']}.")
+    elif is_greater is None:
+        print(f"{first_shape['Label']} has the same {compare_how} as {second_shape['Label']}.")
+    elif not is_greater:
+        print(f"{first_shape['Label']} has a smaller {compare_how} than {second_shape['Label']}.")
+
 
 
 #function that shows a guide to the formulas:

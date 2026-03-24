@@ -42,6 +42,7 @@ def save_csv():
         return store_shapes
     
 
+
 #function for rewriting the CSV again. This will be used every time the user makes a change to their library:
 def rewrite_csv(shapes):
     with open("individual_projects/geometry calculator/docs/shapes.csv", "w", newline='') as csvfile:
@@ -49,6 +50,7 @@ def rewrite_csv(shapes):
         writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
         writer.writeheader()
         writer.writerows(shapes)
+
 
 
 #function for stupid-proofing with numbers:
@@ -67,6 +69,7 @@ def check_num():
     return float(user_num)
     
 
+
 #function to count the shapes
 def count_shapes(shapes):
     #count how many items are in the list
@@ -76,6 +79,7 @@ def count_shapes(shapes):
     return counter
 
 
+
 #function to count a specific type of shape
 def count_specific(shapes, type):
     count = 0
@@ -83,6 +87,7 @@ def count_specific(shapes, type):
         if shape["Type"] == type: #check if the type of the shape matches the given type
             count += 1 #add one to the counter if so
     return count+1 #add 1 because this will become the label for the shape
+
 
 
 #function to scale the shapes
@@ -116,6 +121,30 @@ def scale_shape(shape, scale_factor):
     print(f"The new Perimeter is {perimeter}")
 
 
+
+#function to show a specific shape
+def show_specific(shape):
+    print(f"\n{shape['Label']}")
+
+    #print specific labels for each measurement for each shape
+    if shape["Type"] == "Rectangle":
+        print(f"Length: {shape['First Measurement']} units")
+        print(f"Width: {shape['Second Measurement']} units")
+    elif shape["Type"] == "Square":
+        print(f"Side: {shape['First Measurement']} units")
+    elif shape["Type"] == "Circle":
+        print(f"Radius: {shape['First Measurement']} units")
+    elif shape["Type"] == "Triangle":
+        print(f"Base: {shape['First Measurement']} units")
+        print(f"Left Side: {shape['Second Measurement']} units")
+        print(f"Right: {shape['Third Measurement']} units")
+        print(f"Height: {shape['Fourth Measurement']} units")
+
+    print(f"Perimeter: {shape['Perimeter']} units")
+    print(f"Area: {shape['Area']} units\u00B2")
+
+
+
 #function to compare areas
 def area_is_greater(first_shape, second_shape):
     #get the areas of the first and second shapes.
@@ -130,6 +159,7 @@ def area_is_greater(first_shape, second_shape):
         return False
     else: #failsafe in case they are the same
         return None
+
 
 
 #function to compare perimeters
