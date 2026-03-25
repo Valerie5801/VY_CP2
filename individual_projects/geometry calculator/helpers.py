@@ -61,13 +61,15 @@ def check_num():
         #get an input from the user
         user_num = input("Type here: ")
         #if the input is not a number, ask them again
-        if not user_num.isnumeric():
+        try:
+            user_num = float(user_num)
+        except:
             print("That isn't a number. Please try again.")
         #if it is a number, break out of the loop
         else:
             break
     #return the input
-    return float(user_num)
+    return user_num
     
 
 

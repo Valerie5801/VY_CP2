@@ -29,10 +29,10 @@ def main_menu():
         time.sleep(1)
         print("\nMAIN MENU")
         print(f"{shape_count} shapes have been made.")
-        print("\nYou may: \n1. Create a new shape\n2. Remove a Shape\n3. View all shapes\n4. Select a shape\n5. Compare two shapes\n6. See the formula guide\n7. Exit")
-
+        print("\nYou may: \n1. Create a new shape\n2. Remove a Shape\n3. View all shapes\n4. View/Select a shape\n5. Compare two shapes\n6. See the formula guide\n7. Exit")
+        print("\nPlease type in the numbers to select (for example, type in 1 to create a shape.)")
         #ask for the user's action as an input and set it to user_action
-        user_action = input("\nWhat do you want to do?(please type your response as a number, like 1): ")
+        user_action = input("What do you want to do?(please type your response as a number, like 1): ")
         
         #match user_action here:
         match user_action:
@@ -67,7 +67,7 @@ def main_menu():
                     while not check_shape:
                         shape_one = input('\nWhat shape do you want the comparison to be based on/the first shape?(use the label name such as "Circle 1"): ')
                         for shape in exist_shapes:
-                            if shape_one == shape["Label"]:
+                            if shape_one.strip().lower() == shape["Label"].strip().lower():
                                 check_shape = True
                                 first_shape = shape
                             else:
@@ -81,7 +81,7 @@ def main_menu():
                     while not check_shape:
                         shape_two = input('What shape do you want to compare to/the second shape?(use the label name such as "Circle 1"): ')
                         for shape in exist_shapes:
-                            if shape_two == shape["Label"]:
+                            if shape_two.strip().lower() == shape["Label"].strip().lower():
                                 second_shape = shape
                                 check_shape = True
                             else:

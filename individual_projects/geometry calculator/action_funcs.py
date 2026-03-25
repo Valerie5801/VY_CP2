@@ -8,13 +8,14 @@ import time
 #function for making a new shape:
 def create_shape(shapes):
     label_num = 0
+    print("When asked about the dimensions, please type the values of the measurements.")
     #ask the user what shape they want
     print("\nAvailable shapes: \n\t-Rectangle \n\t-Square \n\t-Circle \n\t-Triangle")
     ask_shape = input('What shape do you want?(write like "Rectangle"): ')
     #ask them for the required measurements for each shape
     #make an object from the respective class of the shape that they chose. Append them to new_shape.
     #calculate the area and perimeter and append them to new_shape
-
+    
     match ask_shape.capitalize().strip():
         case "Rectangle":
             print("What is the length of the rectangle?")
@@ -91,10 +92,10 @@ def remove_shape(shapes):
     #display all the shapes using display_shapes
     display_shapes(shapes)
     #ask the user what shape they want to remove via label.
-    remove_shape = input("What shape do you want to remove?(please type the label of the shape): ")
+    remove_shape = input("Type the label of the shape you want to remove: ")
     #loop through the dictionary and see if it exists
     for shape in shapes:
-        if remove_shape == shape['Label']:
+        if remove_shape.strip().lower() == shape['Label'].strip().lower():
             found_shape = shape
         else:
             pass
@@ -121,7 +122,7 @@ def scale_shape(shapes):
         if show_shape.strip().lower() == "exit":
             return
         for shape in shapes:
-            if show_shape == shape["Label"]:
+            if show_shape.strip().lower() == shape["Label"].strip().lower():
                 shape_exist = True
                 found_shape = shape
                 break
@@ -138,9 +139,9 @@ def scale_shape(shapes):
             #print the area and perimeter from the scale_shape function
         #if they don't:
             #break
-        if ask_scale == "y":
+        if ask_scale.strip().lower() == "y":
             while True:
-                print("Please type in a decimal if it is not a whole number.")
+                print("Decimals are allowed.")
                 scale_fact = input("By what number do you want to scale by?: ")
                 try:
                     scale_fact = float(scale_fact)
@@ -171,7 +172,7 @@ def compare_shapes(first_shape, second_shape):
         #if it results in false, then say that the first shape's area/perimeter is less than the second shape's area/perimeter
         #if it results in None, then say that their areas/perimeters are equal
         if compare_how == "Exit":
-             break
+             return
 
         match compare_how:
             case "Area":
@@ -181,10 +182,7 @@ def compare_shapes(first_shape, second_shape):
                 is_greater = helpers.peri_is_greater(first_shape["Perimeter"], second_shape["Perimeter"])
                 break
             case _:
-                print("That isn't an option.")
-
-    if compare_how == "Exit":
-        return
+                print("That isn't an option. Please type either Area or Perimeter")
 
     print("Comparing shapes...")
     time.sleep(1)
@@ -233,6 +231,7 @@ def formula_guide():
     print("This is the formula guide.")
     while True:
         print("You may: \n1. View all Area formulas\n2. View all Perimeter formulas\n3. View the Rectangle formulas\n4. View the Square formulas\n5. View the Circle formulas\n6. View the Triangle formulas\n7. Exit")
+        print("Please type in the numbers to select your option (type in 1 for Area formulas, for example).")
         user_view = input("\nWhat would you like to do?: ")
 
         match user_view:

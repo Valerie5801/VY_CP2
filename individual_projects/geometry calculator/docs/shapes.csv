@@ -1,3 +1,4 @@
 Type,Label,First Measurement,Second Measurement,Third Measurement,Fourth Measurement,Perimeter,Area
 Square,Square 1,2.0,0,0,0,8.0,4.0
 Rectangle,Rectangle 1,19.0,2.0,0,0,42.0,38.0
+Circle,Circle 1,500.0,0,0,0,3141.592653589793,785398.1633974483
