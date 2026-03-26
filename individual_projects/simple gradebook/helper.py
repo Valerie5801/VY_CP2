@@ -6,7 +6,7 @@ def save_csv():
     #try the following:
     try:
         #open the provided students list and set the mode to "r" for reading as sample:
-        with open("individual_projects\\simple gradebook\\docs\\gradebook.csv", mode= "r") as sample:
+        with open("individual_projects/simple gradebook/docs/gradebook.csv", mode= "r") as sample:
             #read sample and set it to the variable read_list
             read_list = csv.reader(sample)
             #make a variable that grabs the next value in the CSV reader
@@ -38,3 +38,26 @@ def save_csv():
     else:
         #Return store_shapes
         return store_shapes
+    
+
+#function for rewriting the CSV again. This will be used every time the user makes a change to their library:
+def rewrite_csv(students):
+    with open("individual_projects/simple gradebook/docs/gradebook.csv", "w", newline='') as csvfile:
+        fieldnames = ['Name', 'ID', 'Average Score', 'Average Letter', 'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6']
+        writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
+        writer.writeheader()
+        writer.writerows(students)
+
+#function to stupid proof numbers:
+
+
+#function to determine letter grade from number average:
+
+
+#function to make a gradebook class and save all students in it:
+
+
+#function to count the students:
+
+
+#function to check if a student (ID) exists:
