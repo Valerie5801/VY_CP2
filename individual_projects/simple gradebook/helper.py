@@ -49,15 +49,33 @@ def rewrite_csv(students):
         writer.writerows(students)
 
 #function to stupid proof numbers:
-
-
-#function to determine letter grade from number average:
+def check_num():
+    #while True loop:
+    while True:
+        #get an input from the user
+        user_num = input("Type here: ")
+        #if the input is not a number, ask them again
+        try:
+            user_num = round(float(user_num), 2)
+        except:
+            print("That isn't a number. Please try again.")
+        #if it is a number, break out of the loop
+        else:
+            break
+    #return the input
+    return user_num
 
 
 #function to make a gradebook class and save all students in it:
+def make_gradebook():
+    pass
 
 
 #function to count the students:
+def count_students():
+    pass
 
 
 #function to check if a student (ID) exists:
+def check_id(found_id):
+    pass
