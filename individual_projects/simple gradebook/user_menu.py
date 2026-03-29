@@ -24,24 +24,28 @@ def user_menu():
         
         match user_action:
             case "1":
-                act.add_student()
+                new_student = act.add_student()
+                gradebook.add_student(new_student)
             case "2":
-                #ask the user what the id is of that student
-                print("What is the ID of the student you want to remove?")
-                find_id = int(helper.check_num())
-                #check if the id exists
-                #if it doesnt:
-                    #say that the student doesn't exist
-                    #end the function
-                #if it does exist:
-                    #run the add_grade function
-                act.add_grade()
+                #find the student and run add_grade with the student
+                student = helper.ask_id(gradebook)
+                if student:
+                    act.add_grade(student)
             case "3":
-                act.remove_student()
+                #find the student and run remove_student with the student
+                student = helper.ask_id(gradebook)
+                if student:
+                    act.remove_student(gradebook, student)
             case "4":
-                act.student_record()
+                #find the student and run student_record with the student
+                student = helper.ask_id(gradebook)
+                if student:
+                    act.student_record(student)
             case "5":
-                act.edit_student()
+                #find the student and run edit_student with the student
+                student = helper.ask_id(gradebook)
+                if student:
+                    act.edit_student(student)
             case "6":
                 #use the show_students method from the GradeBook class
                 gradebook.show_students()

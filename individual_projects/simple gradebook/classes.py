@@ -29,10 +29,13 @@ class GradeBook:
 
 #Student Class with attributes name, student_id, and grade_list
 class Student:
-    def __init__(self, name, student_id, grade_list = []):
+    def __init__(self, name, student_id, grade_list = None):
         self.name = name
         self.student_id = student_id
-        self.grade_list = grade_list
+        if grade_list:
+            self.grade_list = grade_list
+        else:
+            self.grade_list = []
 
     #method to add a grade
     def add_grade(self, grade):
@@ -76,9 +79,34 @@ class Student:
             self.avg_letter = "F"
         return self.avg_letter
 
+    def collect_grades(self):
+        self.grade_info = {}
+
+        #loop six times since that's the max amount of grades.
+        for i in range(6):
+            #if the grade exists, add it to grade_info
+            if i < len(self.grade_list):
+                self.grade_info[f'Grade {i+1}'] = self.grade_list[i]
+            #if it doesn't, skip over it.
+            else:
+                self.grade_info[f'Grade {i+1}'] = None
+        return self.grade_info
+
     def __str__(self):
-        return f"Name: {self.name}\nID: {self.student_id}\nAverage Grade: {self.average}\nLetter grade: {self.avg_letter}\nGrades: {self.grade_list}"
+        display_grades = ""
+        
+        return f"Name: {self.name}\nID: {self.student_id}\nAverage Grade: {self.average}\nLetter grade: {self.avg_letter}\nGrade 1: {self.grade_list[0]}\nGrade 2: {self.grade_list[1]}\nGrade 3: {self.grade_list[2]}\nGrade 4: {self.grade_list[3]}\nGrade 5: {self.grade_list[4]}\nGrade 6: {self.grade_list[5]}"
     
     #method to return information as a dictionary
-    def save_info(self):
-        return {'Name': self.name, 'ID': self.student_id, 'Average Grade': self.average, 'Letter grade': self.avg_letter, 'Grades': self.grade_list}
+    def return_info(self):
+        return {'Name': self.name, 'ID': self.student_id, 'Average Grade': self.average, 'Letter grade': self.avg_letter, 'Grade 1': self.grade_list[0], 'Grade 2': self.grade_list[1], 'Grade 3': self.grade_list[2], 'Grade 4': self.grade_list[3], 'Grade 5': self.grade_list[4], 'Grade 6': self.grade_list[5]}
+    
+
+mari = Student("Mari", 143143)
+mari.add_grade(90)
+mari.add_grade(100)
+mari.find_avg()
+mari.letter_average()
+mari.collect_grades()
+
+print(mari)

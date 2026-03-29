@@ -77,5 +77,28 @@ def count_students():
 
 
 #function to check if a student (ID) exists:
-def check_id(found_id):
-    pass
+def check_id(gradebook, found_id):
+    #loop through the gradebook:
+        #check if the student's id matches the found_id
+        #if it does, return the student
+    #return none here as a failsafe if the student doesn't exist
+    for student in gradebook.student_list:
+        if student.student_id == found_id:
+            return student
+    return None
+
+
+#function to ask the user for an id:
+def ask_id(gradebook):
+    print("Enter student ID:")
+    #ask for the student's ID and sanitize
+    find_id = int(check_num())
+    #make sure the ID exists
+    student = check_id(gradebook, find_id)
+
+    #return student if it exists, and None if it doesn't.
+    if student is None:
+        print("Student was not found.")
+        return None
+    else:
+        return student

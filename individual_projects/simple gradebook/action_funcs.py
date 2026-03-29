@@ -14,7 +14,7 @@ def add_student():
 
     #ask the user if they would like to add grades to the student
     while True:
-        add_grade = input("Would you like to add a for this student?(type in y/n): ")
+        add_grade = input("Would you like to add a grade for this student?(type in y/n): ")
         match add_grade.lower().strip():
             case "y":
                 #ask the user how many grades they want to add with a max of six.
@@ -36,7 +36,7 @@ def add_grade(student):
     num_grades = int(helper.check_num())
 
     #as the student parameter should be an object, use the add_grade method from the Student clas
-    for grade in num_grades:
+    for grade in range(num_grades):
         print(f"What is the grade of Grade {grade}?")
         ask_grade = helper.check_num()
         student.add_grade(ask_grade)
@@ -45,36 +45,21 @@ def add_grade(student):
 
 
 #function to remove a student
-def remove_student(students):
-    #ask the user what the id is of that student
-    print("What is the ID of the student you want to remove?")
-    find_id = int(helper.check_num())
-    #check if the id exists
-    #if it doesn't:
-        #say that the student doesn't exist
-        #end the function
-    #if it does:
-        #remove the student from the list of students
-        #return the list of students
+def remove_student(gradebook, student):
+    #use the .remove() method from the gradebook class
+    gradebook.student_list.remove(student)
+    print(f"{student.name} has been removed.")
 
 
 #function to view a student's record
-def student_record():
-    #ask the user what the id is of the student they want to view
-    print("What is the ID of the student you want to view?")
-    find_id = int(helper.check_num())
-    #check if the id exists
-    #if it doesn't:
-        #say the student doesn't exist
-        #end the function
-    #if it does:
-        #print the student and their information
-    pass
+def student_record(student):
+    #use the __str__ method from Student class
+    print("\n---Student Record---")
+    print(student)
 
 
 #function to edit a student
-def edit_student():
-    #ask the user what the id is of the student they want to view
+def edit_student(student):
     #check if the id exists
     #if it doesn't:
         #say that the student doesn't exist
