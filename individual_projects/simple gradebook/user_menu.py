@@ -4,7 +4,7 @@ import action_funcs as act
 from classes import GradeBook
 import helper
 
-def user_menu():
+def main_menu():
     #count the amount of students and show it to the user
     #show the user what they can do:
         #1. Add new student

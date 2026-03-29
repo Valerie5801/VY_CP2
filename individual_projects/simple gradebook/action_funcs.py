@@ -14,16 +14,33 @@ def add_student():
 
     #ask the user if they would like to add grades to the student
     while True:
-        add_grade = input("Would you like to add a grade for this student?(type in y/n): ")
-        match add_grade.lower().strip():
+        add_grade = input("Would you like to add a grade for this student?(type in y/n): ").lower().strip()
+        match add_grade:
             case "y":
                 #ask the user how many grades they want to add with a max of six.
                 #break out of the loop.
-                print("letting you add grades")
+                print("You can only add a max of 6 grades to each student.")
+                print("How many grades do you want to add?(please type as a whole number)")
+                #make sure the user types in a number between 0 and 6
+                amount_grade = max(0, min(int(helper.check_num()), 6))
+                break
             case "n":
                 break
             case _:
                 print('That is not an option. Please type either "y" or "n"')
+
+    if add_grade == "y":
+        for i in range(amount_grade):
+            print("Type the percentage of the grade (don't type %)")
+            user_added_grade = int(helper.check_num())
+            new_student.add_grade(user_added_grade)
+
+    new_student.find_avg()
+    new_student.letter_average()
+    new_student.return_info()
+    
+    print(f"{new_student.name} has been added with the following information.")
+    print(new_student)
 
     #return the student
     return new_student

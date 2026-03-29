@@ -3,8 +3,11 @@
 
 #GradeBook Class to manage students with attributes student_list
 class GradeBook:
-    def __init__(self, student_list = []):
-        self.student_list = student_list
+    def __init__(self, student_list = None):
+        if student_list:
+            self.student_list = student_list
+        else:
+            self.student_list = []
 
     #method to add students
     def add_student(self, student):
@@ -13,7 +16,7 @@ class GradeBook:
     #method to remove students
     def remove_student(self, student):
         if student in self.student_list:
-            self.student_list.pop(student)
+            self.student_list.remove(student)
         else:
             print("That student isn't in the gradebook.")
 
@@ -89,24 +92,35 @@ class Student:
                 self.grade_info[f'Grade {i+1}'] = self.grade_list[i]
             #if it doesn't, skip over it.
             else:
-                self.grade_info[f'Grade {i+1}'] = None
+                self.grade_info[f'Grade {i+1}'] = "-"
         return self.grade_info
 
-    def __str__(self):
-        display_grades = ""
-        
-        return f"Name: {self.name}\nID: {self.student_id}\nAverage Grade: {self.average}\nLetter grade: {self.avg_letter}\nGrade 1: {self.grade_list[0]}\nGrade 2: {self.grade_list[1]}\nGrade 3: {self.grade_list[2]}\nGrade 4: {self.grade_list[3]}\nGrade 5: {self.grade_list[4]}\nGrade 6: {self.grade_list[5]}"
-    
     #method to return information as a dictionary
     def return_info(self):
-        return {'Name': self.name, 'ID': self.student_id, 'Average Grade': self.average, 'Letter grade': self.avg_letter, 'Grade 1': self.grade_list[0], 'Grade 2': self.grade_list[1], 'Grade 3': self.grade_list[2], 'Grade 4': self.grade_list[3], 'Grade 5': self.grade_list[4], 'Grade 6': self.grade_list[5]}
+        #make a dictionary with all the info
+        self.info = {'Name': self.name, 
+                    'ID': self.student_id, 
+                    'Average Grade': self.average, 
+                    'Letter grade': self.avg_letter}
+        #add the grades to the info dictionary
+        self.info.update(self.collect_grades())
+        return self.info
+
+    def __str__(self):
+        self.return_info() #make sure self.info exists
+        display_info = ""
+        #loop through info and put it in a string to print out
+        for key, value in self.info.items():
+            display_info += f"{key}: {value}\n"
+
+        return display_info
     
 
-mari = Student("Mari", 143143)
+"""mari = Student("Mari", 143143)
 mari.add_grade(90)
 mari.add_grade(100)
 mari.find_avg()
 mari.letter_average()
 mari.collect_grades()
-
-print(mari)
+mari.return_info()
+print(mari)"""
