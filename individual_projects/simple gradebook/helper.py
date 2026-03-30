@@ -25,7 +25,9 @@ def save_csv():
                         next_item[4]: line[4],
                         next_item[5]: line[5],
                         next_item[6]: line[6],
-                        next_item[7]: line[7]
+                        next_item[7]: line[7],
+                        next_item[8]: line[8],
+                        next_item[9]: line[9]
                     }
                 )
                 #append the dictionary with the respective information (found using index values)
