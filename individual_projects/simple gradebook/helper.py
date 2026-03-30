@@ -50,15 +50,21 @@ def rewrite_csv(students):
         
         #loop through students
         for student in students:
-            #make empty string called row to hold information
-            row = []
-            #add grades
+            #get the student's grades
             grades = student.grade_list[:6]
-            #fill blank spaces
+            #anything blank or nothing is replaced with a dash
             grades += ['-'] * (6 - len(grades))
-            row.extend(grades)
 
-            #write row into the CSV
+            #make a list with the student's information in the order that the CSV is set up
+            row = [
+                student.name,
+                student.student_id,
+                student.average,
+                student.avg_letter
+            ]
+            #add grades to row
+            row.extend(grades)
+            #write a row.
             writer.writerow(row)
 
 
@@ -105,14 +111,13 @@ def check_num():
     return user_num
 
 
-#function to make a gradebook class and save all students in it:
-def make_gradebook():
-    pass
-
-
 #function to count the students:
-def count_students():
-    pass
+def count_students(gradebook):
+    counter = 0
+    #go up 1 for every student that exists
+    for student in gradebook.student_list:
+        counter += 1
+    return counter
 
 
 #function to check if a student (ID) exists:

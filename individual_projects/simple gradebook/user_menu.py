@@ -1,5 +1,4 @@
 #VY 2nd Main Menu for Simple Gradebook
-import csv
 import action_funcs as act
 from classes import GradeBook
 import helper
@@ -18,6 +17,10 @@ def main_menu():
     helper.dict_to_class(gradebook)
 
     while True:
+        print("MAIN MENU")
+        student_counter = helper.count_students(gradebook)
+        print(f"{student_counter} students are in the gradebook.")
+
         #ask the user what they want to do. run the corresponding function from action_funcs, and sanitize for invalid inputs
         print("You can: \n\t1. Add new student\n\t2. Add a grade to a student\n\t3. Remove a student\n\t4. View a student's record\n\t5. Edit a student\n\t6. View all students/gradebook\n\t7. Exit")
         print('Please type in numerical input such as 1 for "Add new student"')
@@ -46,7 +49,7 @@ def main_menu():
                 #find the student and run edit_student with the student
                 student = helper.ask_id(gradebook)
                 if student:
-                    act.edit_student(student)
+                    student = act.edit_student(student)
             case "6":
                 #use the show_students method from the GradeBook class
                 gradebook.show_students()
