@@ -1,5 +1,6 @@
 #VY 2nd Helper Functions for Simple Gradebook
 import csv
+from classes import Student
 
 #function to save the CSV for first time when program is ran
 def save_csv():
@@ -11,11 +12,11 @@ def save_csv():
             read_list = csv.reader(sample)
             #make a variable that grabs the next value in the CSV reader
             next_item = next(read_list)
-            #make an empty list called "store_shapes"
-            store_shapes = []
+            #make an empty list called "exist_students"
+            exist_students = []
             #Use a for loop here to make a dictionary:
             for line in read_list:
-                store_shapes.append(
+                exist_students.append(
                     {
                         next_item[0]: line[0],
                         next_item[1]: line[1],
@@ -36,17 +37,55 @@ def save_csv():
         return []
     #else statement:
     else:
-        #Return store_shapes
-        return store_shapes
+        #Return exist_students
+        return exist_students
     
 
 #function for rewriting the CSV again. This will be used every time the user makes a change to their library:
 def rewrite_csv(students):
     with open("individual_projects/simple gradebook/docs/gradebook.csv", "w", newline='') as csvfile:
-        fieldnames = ['Name', 'ID', 'Average Score', 'Average Letter', 'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6']
-        writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
-        writer.writeheader()
-        writer.writerows(students)
+        writer = csv.writer(csvfile)   #read through list
+        #write the header
+        writer.writerow(['Name', 'ID', 'Average Score', 'Average Letter', 'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6'])
+        
+        #loop through students
+        for student in students:
+            #make empty string called row to hold information
+            row = []
+            #add grades
+            grades = student.grade_list[:6]
+            #fill blank spaces
+            grades += ['-'] * (6 - len(grades))
+            row.extend(grades)
+
+            #write row into the CSV
+            writer.writerow(row)
+
+
+#function to convert the returned dict from the CSV and turn it into a Student class:
+def dict_to_class(gradebook):
+    information = save_csv()
+
+    for info in information:
+        #make a student class from the information for each student
+        student = Student(info['Name'], int(info['ID']))
+
+        #loop through the grades and add them to the Student class
+        for i in range(1,7):
+            grade_key = f"Grade {i}"
+            if info[grade_key] != '-' and info[grade_key] != '':
+                #add it to the grade if it exists
+                student.add_grade(int(info[grade_key]))
+
+        #get all necessary information for the student
+        student.find_avg()
+        student.letter_average()
+
+        #add the student to the gradebook.
+        gradebook.add_student(student)
+
+    return gradebook
+
 
 #function to stupid proof numbers:
 def check_num():

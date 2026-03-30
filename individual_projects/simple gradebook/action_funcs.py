@@ -2,6 +2,23 @@
 from classes import Student
 import helper
 
+
+#function to add a grade to an existing student
+def add_grade(student):
+    #ask the user how many grades they want to add with a max of six.
+    print("You can only add a max of 6 grades to each student.")
+    print("How many grades do you want to add?(please type as a whole number)")
+    #make sure the user types in a number between 0 and 6
+    amount_grade = max(0, min(int(helper.check_num()), 6))
+
+    for i in range(amount_grade):
+            print("Type the percentage of the grade (don't type %)")
+            user_added_grade = int(helper.check_num())
+            student.add_grade(user_added_grade)
+
+    return student
+
+
 #function to add a student
 def add_student():
     #ask the user the name of the student
@@ -14,26 +31,17 @@ def add_student():
 
     #ask the user if they would like to add grades to the student
     while True:
-        add_grade = input("Would you like to add a grade for this student?(type in y/n): ").lower().strip()
-        match add_grade:
+        ask_add = input("Would you like to add a grade for this student?(type in y/n): ").lower().strip()
+        match ask_add:
             case "y":
-                #ask the user how many grades they want to add with a max of six.
-                #break out of the loop.
-                print("You can only add a max of 6 grades to each student.")
-                print("How many grades do you want to add?(please type as a whole number)")
-                #make sure the user types in a number between 0 and 6
-                amount_grade = max(0, min(int(helper.check_num()), 6))
+                #run add_grade
+                new_student = add_grade(new_student)
+                #break out of the loop
                 break
             case "n":
                 break
             case _:
                 print('That is not an option. Please type either "y" or "n"')
-
-    if add_grade == "y":
-        for i in range(amount_grade):
-            print("Type the percentage of the grade (don't type %)")
-            user_added_grade = int(helper.check_num())
-            new_student.add_grade(user_added_grade)
 
     new_student.find_avg()
     new_student.letter_average()
@@ -44,21 +52,6 @@ def add_student():
 
     #return the student
     return new_student
-
-
-#function to add a grade to an existing student
-def add_grade(student):
-    #ask the user how many grades they want to add.
-    print("How many grades do you want to add?")
-    num_grades = int(helper.check_num())
-
-    #as the student parameter should be an object, use the add_grade method from the Student clas
-    for grade in range(num_grades):
-        print(f"What is the grade of Grade {grade}?")
-        ask_grade = helper.check_num()
-        student.add_grade(ask_grade)
-
-    return student
 
 
 #function to remove a student

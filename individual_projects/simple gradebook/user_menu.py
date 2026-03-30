@@ -15,6 +15,7 @@ def main_menu():
         #6. View all students/Gradebook
         #7. Exit
     gradebook = GradeBook()
+    helper.dict_to_class(gradebook)
 
     while True:
         #ask the user what they want to do. run the corresponding function from action_funcs, and sanitize for invalid inputs
@@ -30,7 +31,7 @@ def main_menu():
                 #find the student and run add_grade with the student
                 student = helper.ask_id(gradebook)
                 if student:
-                    act.add_grade(student)
+                    student = act.add_grade(student)
             case "3":
                 #find the student and run remove_student with the student
                 student = helper.ask_id(gradebook)
@@ -53,3 +54,9 @@ def main_menu():
                 break
             case _:
                 print("That isn't an option. Please type a numerical input to select your action.")
+
+        #rewrite CSV after each loop
+        for student in gradebook.student_list:
+            student.find_avg()
+            student.letter_average()
+        helper.rewrite_csv(gradebook.student_list)
