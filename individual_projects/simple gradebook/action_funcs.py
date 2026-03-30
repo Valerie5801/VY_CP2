@@ -102,7 +102,7 @@ def edit_student(student):
                 for i in range(len(student.grade_list)):
                     print(f"Grade {i+1}: {student.grade_list[i]}")
                 #ask what grade they want to edit (it will be labeled Grade 1, Grade 2, Grade 3, etc...)
-                print('What grade do you want to edit?(Type in the number such as "1" or "2"): ')
+                print('What grade do you want to edit?(Type in the grade such as "1" for Grade 1): ')
                 edited_grade = int(helper.check_num())
                 edited_grade -= 1
                 #if the grade doesn't exist, tell the user and continue with the loop
