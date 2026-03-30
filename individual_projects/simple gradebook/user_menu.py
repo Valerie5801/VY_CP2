@@ -22,7 +22,7 @@ def main_menu():
         print(f"{student_counter} students are in the gradebook.")
 
         #ask the user what they want to do. run the corresponding function from action_funcs, and sanitize for invalid inputs
-        print("You can: \n\t1. Add new student\n\t2. Add a grade to a student\n\t3. Remove a student\n\t4. View a student's record\n\t5. Edit a student\n\t6. View all students/gradebook\n\t7. Exit")
+        print("\nYou can: \n\t1. Add new student\n\t2. Add a grade to a student\n\t3. Remove a student\n\t4. View a student's record\n\t5. Edit a student\n\t6. View all students/gradebook\n\t7. Exit")
         print('Please type in numerical input such as 1 for "Add new student"')
         user_action = input("What do you want to do?: ")
         
