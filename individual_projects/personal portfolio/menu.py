@@ -27,14 +27,14 @@ def window():
     welcome_txt = tk.Label(root, text='This is my programming portfolio of the four best projects I have. Click on one of the buttons below to learn more about a project, then press "Run Project" to test it out yourself!', font=("Georgia", 15), wraplength=800, justify="center")
     welcome_txt.grid(row=1, column=0, columnspan=2, pady=20, padx=10)
 
-    project_one = tk.Button(root, text="Sierpinski Triangle Generator", command=lambda: show_desc("project_one", info_box), font=("Georgia", 5), width=12, height=2)
-    project_one.grid(row=2, column=0, padx=5, pady=10)
-    project_two = tk.Button(root, text="Shape Calculator", command=lambda: show_desc("project_two", info_box), font=("Georgia", 5), width=12, height=2)
-    project_two.grid(row=2, column=1, padx=5, pady=10)
-    project_three = tk.Button(root, text="Simple Gradebook", command=lambda: show_desc("project_three", info_box), font=("Georgia", 5), width=12, height=2)
-    project_three.grid(row=3, column=0, padx=5, pady=10)
-    project_four = tk.Button(root, text="Word Counter", command=lambda: show_desc("project_four", info_box), font=("Georgia", 5), width=12, height=2)
-    project_four.grid(row=3, column=1, padx=5, pady=10)
+    project_one = tk.Button(root, text="Sierpinski Triangle Generator", command=lambda: show_desc("project_one", info_box), font=("Georgia", 8), width=12, height=2)
+    project_one.grid(row=2, column=0, padx=8, pady=10)
+    project_two = tk.Button(root, text="Shape Calculator", command=lambda: show_desc("project_two", info_box), font=("Georgia", 8), width=12, height=2)
+    project_two.grid(row=2, column=1, padx=8, pady=10)
+    project_three = tk.Button(root, text="Simple Gradebook", command=lambda: show_desc("project_three", info_box), font=("Georgia", 8), width=12, height=2)
+    project_three.grid(row=3, column=0, padx=8, pady=10)
+    project_four = tk.Button(root, text="Word Counter", command=lambda: show_desc("project_four", info_box), font=("Georgia", 8), width=12, height=2)
+    project_four.grid(row=3, column=1, padx=8, pady=10)
 
     #make info box
     info_frame = tk.Frame(root, relief="solid", borderwidth=2, bg="white", width=750, height=450)
