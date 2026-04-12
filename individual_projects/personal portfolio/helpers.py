@@ -18,33 +18,40 @@ project_info = {
     "project_four": "final description!" 
 }
 
-# Simple state tracker using a dictionary
-state = {"current_project": None}
+#variable to hold what is currently selected
+current_project = None
 
 #function to show a description of the project with parameters of the project number
 def show_desc(project_name, label):
-    state["current_project"] = project_name
+    #set the selected project to the current project
+    current_project = project_name
+    #change the text to the description in the dictionary
     label.config(text=project_info[project_name])
 
 #function to run the program of the project with parameters of the project number.
-def run_program(root):
-    if state["current_project"] is None:
+def run_program(root, label):
+    #as a failsafe, if current_project is none, tell the user that they need to select a project before trying to run anything
+    if current_project is None:
+        label.config(text="You need to select a project first!")
         return
     
+    #hide the window
     root.withdraw()
     root.attributes("-topmost", False)
 
     try:
-        if state["current_project"] == "project_one":
+        #run the respective project based on what the current project is.
+        if current_project == "project_one":
             fractal.main_menu()
-        elif state["current_project"] == "project_two":
+        elif current_project == "project_two":
             geometry.main_menu()
-        elif state["current_project"] == "project_three":
+        elif current_project == "project_three":
             gradebook.main_menu()
-        elif state["current_project"] == "project_four":
+        elif current_project == "project_four":
             words.main_menu()
 
     finally:
+        #show the window
         root.attributes("-topmost", True)
         root.deiconify()
         root.lift()
