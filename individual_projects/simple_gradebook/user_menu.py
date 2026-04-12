@@ -1,7 +1,7 @@
 #VY 2nd Main Menu for Simple Gradebook
-import action_funcs as act
-from classes import GradeBook
-import helper
+from . import action_funcs as act
+from .classes import GradeBook
+from . import helper
 
 def main_menu():
     #count the amount of students and show it to the user

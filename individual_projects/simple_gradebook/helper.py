@@ -1,6 +1,6 @@
 #VY 2nd Helper Functions for Simple Gradebook
 import csv
-from classes import Student
+from .classes import Student
 
 #function to save the CSV for first time when program is ran
 def save_csv():

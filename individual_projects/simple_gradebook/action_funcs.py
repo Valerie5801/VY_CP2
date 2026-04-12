@@ -1,6 +1,6 @@
 #VY 2nd Action Functions for Simple Gradebook
-from classes import Student
-import helper
+from .classes import Student
+from . import helper
 import time as t
 
 #function to add a grade to an existing student

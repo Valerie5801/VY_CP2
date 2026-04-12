@@ -1,11 +1,8 @@
 import tkinter as tk
-#from helpers import *
-from faker import Faker
+from helpers import show_desc, run_program
 
 def window():
     root = tk.Tk()
-
-    fake = Faker()
 
     #make the title
     root.title("Valerie's Personal Programming Portfolio")
@@ -30,13 +27,13 @@ def window():
     welcome_txt = tk.Label(root, text='This is my programming portfolio of the four best projects I have. Click on one of the buttons below to learn more about a project, then press "Run Project" to test it out yourself!', wraplength=800, justify="center")
     welcome_txt.grid(row=1, column=0, columnspan=2, pady=20, padx=10)
 
-    project_one = tk.Button(root, text="Project 1", width=20, height=3)
+    project_one = tk.Button(root, text="Project 1", command=lambda: show_desc("project_one", info_box), width=20, height=3)
     project_one.grid(row=2, column=0, padx=10, pady=10)
-    project_two = tk.Button(root, text="Project 2", width=20, height=3)
+    project_two = tk.Button(root, text="Project 2", command=lambda: show_desc("project_two", info_box), width=20, height=3)
     project_two.grid(row=2, column=1, padx=10, pady=10)
-    project_three = tk.Button(root, text="Project 3", width=20, height=3)
+    project_three = tk.Button(root, text="Project 3", command=lambda: show_desc("project_three", info_box), width=20, height=3)
     project_three.grid(row=3, column=0, padx=10, pady=10)
-    project_four = tk.Button(root, text="Project 4", width=20, height=3)
+    project_four = tk.Button(root, text="Project 4", command=lambda: show_desc("project_four", info_box), width=20, height=3)
     project_four.grid(row=3, column=1, padx=10, pady=10)
 
     #make info box
@@ -49,7 +46,9 @@ def window():
     info_box.grid(row=0, column=0, padx=10, pady=10)
 
     #run button at bottom
-    run_btn = tk.Button(root, text="Run Program", width=20, height=3)
+    run_btn = tk.Button(root, text="Run Program", command=lambda: run_program(root), width=20, height=3)
     run_btn.grid(row=5, column=0, columnspan=2, pady=15, padx=10)
 
     root.mainloop() #keep program running
+
+window()

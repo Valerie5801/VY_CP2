@@ -1,8 +1,8 @@
 #VY 2nd User Menu for Geometry Calculator
 #import actions
-import action_funcs
+from . import action_funcs
 #import helpers
-import helpers
+from . import helpers
 import time
 
 #main_menu function:

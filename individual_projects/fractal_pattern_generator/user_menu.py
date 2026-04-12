@@ -1,10 +1,11 @@
 #VY 2nd Main Menu for fractal pattern generator
 #import turtle_draw_functions
-import turtle_draw_functions
+from . import turtle_draw_functions
 import turtle
 
 #function named "main_menu":
 def main_menu():
+    t = None  # Initialize t before the loop
     #While true loop:
     while True:
         #ask the user if they want to draw a siperniski triangle or exit out of the program
@@ -65,8 +66,9 @@ def main_menu():
 
         #Else:
         elif user_action == "2":
-            #remove turtle
-            t.clear()
+            #remove turtle if it was created
+            if t is not None:
+                t.clear()
             break
             #break out of the program
         

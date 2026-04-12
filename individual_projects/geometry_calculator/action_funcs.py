@@ -1,8 +1,8 @@
 #VY 2nd Functions for each available thing that the user cna do in the meny for Geometry Calculator
 #import helpers
 #import shape_classes
-import helpers
-import shape_classes
+from . import helpers
+from . import shape_classes
 import time
 
 #function for making a new shape:

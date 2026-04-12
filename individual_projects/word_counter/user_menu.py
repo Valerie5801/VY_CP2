@@ -1,8 +1,8 @@
 #VY 2nd Menu for Word Counter
 #import menu_actions
-import menu_actions
-import time_clean_functions
-import helper_functions_read
+from . import menu_actions
+from . import time_clean_functions
+from . import helper_functions_read
 
 #main_menu function:
 def main_menu(document_info, document_content):
