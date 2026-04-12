@@ -16,34 +16,38 @@ root.geometry("1000x770+250-50")
 #set window above all other open applications
 root.attributes("-topmost", True)
 
+#make it so things can properly center
+root.columnconfigure(0, weight=1)
+root.columnconfigure(1, weight=1)
+#push run button to bottom
+root.rowconfigure(4, weight=1)
+
 #set up the title, welcome text, buttons, and description window.
 title = tk.Label(root, text="Valerie's Programming Portoflio", font=("Times New Roman", 30, "bold"))
-title.grid(row=0, column=0, columnspan=2)
+title.grid(row=0, column=0, columnspan=2, pady=10)
 
-welcome_txt = tk.Label(root, text='This is my programming portfolio of the four best projects I have. Click on one of the buttons below to learn more about a project, then press "Run Project" to test it out yourself!')
-welcome_txt.grid(row=1, column=0, columnspan=2)
+welcome_txt = tk.Label(root, text='This is my programming portfolio of the four best projects I have. Click on one of the buttons below to learn more about a project, then press "Run Project" to test it out yourself!', wraplength=800, justify="center")
+welcome_txt.grid(row=1, column=0, columnspan=2, pady=20, padx=10)
 
-project_one = tk.Button(root, text="Project 1")
-project_one.grid(row=3, column=0)
-project_two = tk.Button(root, text="Project 2")
-project_two.grid(row=3, column=1)
-project_three = tk.Button(root, text="Project 3")
-project_three.grid(row=4, column=0)
-project_four = tk.Button(root, text="Project 4")
-project_four.grid(row=4, column=1)
+project_one = tk.Button(root, text="Project 1", width=20, height=3)
+project_one.grid(row=2, column=0, padx=10, pady=10)
+project_two = tk.Button(root, text="Project 2", width=20, height=3)
+project_two.grid(row=2, column=1, padx=10, pady=10)
+project_three = tk.Button(root, text="Project 3", width=20, height=3)
+project_three.grid(row=3, column=0, padx=10, pady=10)
+project_four = tk.Button(root, text="Project 4", width=20, height=3)
+project_four.grid(row=3, column=1, padx=10, pady=10)
 
-info_box = tk.Label(root, text="Click on one of the buttons to see a description of the project!")
-info_box.grid(row=6, column=0, columnspan=3)
+#make info box
+info_frame = tk.Frame(root, relief="solid", borderwidth=2, bg="white", width=600, height=100)
+info_frame.grid(row=4, column=0, columnspan=2, padx=30, pady=30)
+info_frame.columnconfigure(0, weight=1)
 
-run_btn = tk.Button(root, text="Run Program")
-run_btn.grid(row=7, column=0, columnspan=2)
-"""start = tk.Label(root, text="Yummers")
-start.grid(row=0, column=0, columnspan=2)
+info_box = tk.Label(info_frame, text="Click on one of the buttons to see a description of the project!", wraplength=900, justify="center", bg="white")
+info_box.grid(row=0, column=0, padx=10, pady=10)
 
-def change_text():
-    start["text"] = fake.word()
-
-test_button = tk.Button(root, text="Change Word", command=change_text)
-test_button.grid(row=4, column=0)"""
+#run button at bottom
+run_btn = tk.Button(root, text="Run Program", width=20, height=3)
+run_btn.grid(row=5, column=0, columnspan=2, pady=15, padx=10)
 
 root.mainloop() #keep program running
