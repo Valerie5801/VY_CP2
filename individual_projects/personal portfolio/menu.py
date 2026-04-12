@@ -39,8 +39,9 @@ project_four = tk.Button(root, text="Project 4", width=20, height=3)
 project_four.grid(row=3, column=1, padx=10, pady=10)
 
 #make info box
-info_frame = tk.Frame(root, relief="solid", borderwidth=2, bg="white", width=600, height=100)
+info_frame = tk.Frame(root, relief="solid", borderwidth=2, bg="white", width=750, height=450)
 info_frame.grid(row=4, column=0, columnspan=2, padx=30, pady=30)
+info_frame.grid_propagate(False)
 info_frame.columnconfigure(0, weight=1)
 
 info_box = tk.Label(info_frame, text="Click on one of the buttons to see a description of the project!", wraplength=900, justify="center", bg="white")
