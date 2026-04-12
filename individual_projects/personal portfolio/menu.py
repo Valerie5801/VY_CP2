@@ -28,7 +28,7 @@ def window():
     welcome_txt.grid(row=1, column=0, columnspan=2, pady=20, padx=10)
 
     project_one = tk.Button(root, text="Sierpinski \nTriangle Generator", command=lambda: show_desc("project_one", info_box), font=("Georgia", 15), width=12, height=3)
-    project_one.grid(row=2, column=0, padx=10, pady=15)
+    project_one.grid(row=2, column=0, padx=13, pady=15)
     project_two = tk.Button(root, text="Shape Calculator", command=lambda: show_desc("project_two", info_box), font=("Georgia", 15), width=12, height=2)
     project_two.grid(row=2, column=1, padx=10, pady=10)
     project_three = tk.Button(root, text="Simple \nGradebook", command=lambda: show_desc("project_three", info_box), font=("Georgia", 15), width=12, height=2)
