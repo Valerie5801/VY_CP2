@@ -5,7 +5,11 @@ from . import time_clean_functions
 from . import helper_functions_read
 
 #main_menu function:
-def main_menu(document_info, document_content):
+def main_menu():
+    #get document data at the start
+    document_content = helper_functions_read.save_doc()
+    document_info = time_clean_functions.save_info()
+    
     #while True loop here:
     while True:
         #show the title "Document word count updater"
