@@ -48,10 +48,10 @@ def window():
     info_box.grid(row=0, column=0, padx=10, pady=10)
 
     #run button and stop program button at bottom
-    run_btn = tk.Button(root, text="Run Program", font=("Georgia", 20), command=lambda: run_program(root, info_box), width=20, height=3)
-    run_btn.grid(row=5, column=0, columnspan=2, pady=15, padx=10)
+    run_btn = tk.Button(root, text="Run Program", font=("Georgia", 20), command=lambda: run_program(root, info_box), width=15, height=2)
+    run_btn.grid(row=5, column=0, pady=15, padx=10)
 
-    terminate_btn = tk.Button(root, text="Close Window", font=("Georgia", 20), command=root.quit())
-    terminate_btn.grid(row=5, column=1, columnspan=2, pady=15, padx=10)
+    terminate_btn = tk.Button(root, text="Close Window", font=("Georgia", 20), command=root.quit, width=15, height=2)
+    terminate_btn.grid(row=5, column=1, pady=15, padx=10)
 
     root.mainloop() #keep program running
