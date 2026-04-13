@@ -9,7 +9,7 @@ from pathlib import Path
 def save_csv():
     #try the following:
     try:
-        csv_path = Path(__file__).parent / "docs" / "gradebook.csv"
+        csv_path = Path(__file__).parent / "docs" / "shapes.csv"
         #open the provided students list and set the mode to "r" for reading as sample:
         with open(csv_path, mode= "r") as sample:
             #read sample and set it to the variable read_list
