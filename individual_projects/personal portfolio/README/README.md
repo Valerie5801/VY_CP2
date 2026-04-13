@@ -1,7 +1,7 @@
 # Personal Portfolio
 ***
 
-![The main menu of the program.](mainmenusimplegradebook.JPG)
+![The main menu of the program.](portfolio_menu.png)
 ***
 This is a program that shows the four projects that I am most proud of. It shows the descriptions, which include a brief summary of what the project does, things I learned, and challenges I faced; and lets the user run the program to test it for themself.
 
