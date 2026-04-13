@@ -32,7 +32,7 @@ def main_menu():
             #If they chose option 3:
             case "3":
                 #run the function that lets the user add content (from menu_actions)
-                new_content = menu_actions.add_content(document_content)
+                new_content = menu_actions.add_content()
                 helper_functions_read.add_doc(new_content)
             case "4":
                 #run the function that rewrites the entire txt document with new content
