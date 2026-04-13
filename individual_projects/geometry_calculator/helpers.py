@@ -48,7 +48,8 @@ def save_csv():
 
 #function for rewriting the CSV again. This will be used every time the user makes a change to their library:
 def rewrite_csv(shapes):
-    with open("individual_projects/geometry calculator/docs/shapes.csv", "w", newline='') as csvfile:
+    csv_path = Path(__file__).parent / "docs" / "shapes.csv"
+    with open(csv_path, "w", newline='') as csvfile:
         fieldnames = ['Type', 'Label', 'First Measurement', 'Second Measurement', 'Third Measurement', 'Fourth Measurement', 'Perimeter', 'Area']
         writer = csv.DictWriter(csvfile, fieldnames)   #read through dictionary and write each row as a new thing in the CSV
         writer.writeheader()
