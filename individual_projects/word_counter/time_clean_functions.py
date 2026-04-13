@@ -1,13 +1,15 @@
 #VY 2nd Time Functions for Word Counter
 #import CSV here
 import csv
+from pathlib import Path
 
 #function that rewrites the word count and last edited to the doc_info CSV. This uses parameter of doc_info:
 def edit_info(doc_info):
     #try the following:
     try:
         #Open the CSV using write mode:
-        with open("individual_projects/word counter/doc_info.csv", "w", newline='') as csvfile:
+        csv_path = Path(__file__).parent / "doc_info.csv"
+        with open(csv_path, "w", newline='') as csvfile:
             #make a list of fieldnames consisting of Path and Word Count and Last Edited
             fieldnames = ["Path", "Word Count", "Last Edited"]
             #make a variable named writer
@@ -26,7 +28,8 @@ def save_info():
     #try the following:
     try:
         #open doc_info.csv:
-        with open("individual_projects/word counter/doc_info.csv", "r", newline='') as csvfile:
+        csv_path = Path(__file__).parent / "doc_info.csv"
+        with open(csv_path, "r", newline='') as csvfile:
             read_info = csv.reader(csvfile)
             next_line = next(read_info)
             #make an empty list to hold the dictionary info

@@ -14,9 +14,11 @@ def update_path(doc_info):
 #function that shows the whole txt document to the user:
 def show_doc():
     #try the following
+    from pathlib import Path
     try:
         #open the txt document:
-        with open("individual_projects/word counter/example_doc.txt", "r") as document:
+        doc_path = Path(__file__).parent / "example_doc.txt"
+        with open(doc_path, "r") as document:
             #make a list named content
             content = []
             #for loop here:

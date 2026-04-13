@@ -50,9 +50,10 @@ def run_program(root, label):
         elif current_project['value'] == "project_four":
             words.main_menu()
     
+    #failsafe in case something doesn't work
     except Exception as e:
         print(f"An error occurred: {e}")
-        label.config(text=f"An error occurred: {str(e)}\nPlease check the terminal for details.")
+        label.config(text=f"An error occurred: {str(e)}\nPlease check the terminal for details by minimizing this window.")
 
     finally:
         #show the window

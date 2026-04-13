@@ -1,11 +1,13 @@
 #VY Functions for Reading and File Handling for Word Counter
 #import time here
 import datetime
+from pathlib import Path
 
 #function for saving the txt document:         file_path is the path of the file that the user is currently editing.
 def save_doc():
     try:
-        with open("individual_projects/word counter/example_doc.txt", "r") as document:
+        doc_path = Path(__file__).parent / "example_doc.txt"
+        with open(doc_path, "r") as document:
             content = []
             for line in document:
                 content.append(line.capitalize().strip())
@@ -33,7 +35,8 @@ def rewrite_doc():
     
     try:
         #open the txt document using mode r+:
-        with open("individual_projects/word counter/example_doc.txt", "r+") as document:
+        doc_path = Path(__file__).parent / "example_doc.txt"
+        with open(doc_path, "r+") as document:
             #clear the file
             document.truncate(0)
             #loop through new_lines:
@@ -51,7 +54,8 @@ def rewrite_doc():
 def add_doc(added_lines):
     try:
         #open the txt document using mode a:
-        with open("individual_projects/word counter/example_doc.txt", "a") as document:
+        doc_path = Path(__file__).parent / "example_doc.txt"
+        with open(doc_path, "a") as document:
             #loop through added_lines:
             for line in added_lines:
                 # Write each line and ensure it ends with a newline so text doesn't concatenate.
