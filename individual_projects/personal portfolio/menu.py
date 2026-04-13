@@ -52,5 +52,3 @@ def window():
     run_btn.grid(row=5, column=0, columnspan=2, pady=15, padx=10)
 
     root.mainloop() #keep program running
-
-window()
