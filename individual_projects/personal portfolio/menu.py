@@ -47,8 +47,11 @@ def window():
     info_box = tk.Label(info_frame, text="Click on one of the buttons to see a description of the project!", font=("Georgia", 10), wraplength=900, justify="center", bg="white")
     info_box.grid(row=0, column=0, padx=10, pady=10)
 
-    #run button at bottom
+    #run button and stop program button at bottom
     run_btn = tk.Button(root, text="Run Program", font=("Georgia", 20), command=lambda: run_program(root, info_box), width=20, height=3)
     run_btn.grid(row=5, column=0, columnspan=2, pady=15, padx=10)
+
+    terminate_btn = tk.Button(root, text="Close Window", font=("Georgia", 20), command=root.quit())
+    terminate_btn.grid(row=5, column=1, columnspan=2, pady=15, padx=10)
 
     root.mainloop() #keep program running
