@@ -3,13 +3,15 @@
 import csv
 import math
 import time
+from pathlib import Path
 
 #function to save the CSV for first time when program is ran
 def save_csv():
     #try the following:
     try:
-        #open the provided movies list and set the mode to "r" for reading as sample:
-        with open("individual_projects/geometry calculator/docs/shapes.csv", mode= "r") as sample:
+        csv_path = Path(__file__).parent / "docs" / "gradebook.csv"
+        #open the provided students list and set the mode to "r" for reading as sample:
+        with open(csv_path, mode= "r") as sample:
             #read sample and set it to the variable read_list
             read_list = csv.reader(sample)
             #make a variable that grabs the next value in the CSV reader
