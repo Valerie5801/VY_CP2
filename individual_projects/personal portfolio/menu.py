@@ -48,7 +48,7 @@ def window():
     info_box.grid(row=0, column=0, padx=10, pady=10)
 
     #run button at bottom
-    run_btn = tk.Button(root, text="Run Program", font=("Georgia", 20), command=lambda: run_program(root), width=20, height=3)
+    run_btn = tk.Button(root, text="Run Program", font=("Georgia", 20), command=lambda: run_program(root, info_box), width=20, height=3)
     run_btn.grid(row=5, column=0, columnspan=2, pady=15, padx=10)
 
     root.mainloop() #keep program running
