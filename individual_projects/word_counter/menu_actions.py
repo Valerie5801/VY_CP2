@@ -38,18 +38,16 @@ def show_doc():
             #print out each line
 
 #function that lets the user add content to the document with parameter of the list that holds lines of the txt document in different values:
-def add_content(doc_content):
+def add_content():
     #Ask the user for what they want to add to the document, and tell them to press enter twice to stop editing (this allows the user to write on separate lines)
     print("\nEnter new content (press Enter twice when you're done.): ")
-    # Read multiple lines until the user enters a blank line.
-    # Collect only the newly added lines and update the in-memory `doc_content`.
+    #read lines until user types in an enter
     added_lines = []
     while True:
         line = input()
         if line == "":
             break
-        # Keep `doc_content` as a list of lines without trailing newlines (consistent with save_doc())
-        doc_content.append(line)
+        #add the new lines to added_lines
         added_lines.append(line)
-    # Return only the new lines
+    #return only the new lines
     return added_lines

@@ -25,7 +25,7 @@ def save_doc():
 def rewrite_doc():
     #Ask the user for what they want to write to replace the entire document
     print("Enter new content to replace the entire document (press Enter twice when you're done.): ")
-    # Read multiple lines until the user enters a blank line.
+    #let user type in lines until they type in an enter
     new_lines = []
     while True:
         line = input()
@@ -41,8 +41,8 @@ def rewrite_doc():
             document.truncate(0)
             #loop through new_lines:
             for line in new_lines:
-                #Write each line on the text file.
-                # Ensure each written line ends with a newline.
+                #write each line on the text file.
+                #end with a new line
                 if line.endswith("\n"):
                     document.write(line)
                 else:
@@ -58,7 +58,7 @@ def add_doc(added_lines):
         with open(doc_path, "a") as document:
             #loop through added_lines:
             for line in added_lines:
-                # Write each line and ensure it ends with a newline so text doesn't concatenate.
+                #end with a new line to prevent clutter
                 if line.endswith("\n"):
                     document.write(line)
                 else:

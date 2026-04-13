@@ -49,7 +49,7 @@ def main_menu():
             case _:
             #Stupid proof here in case the user typed in something invalid.
                 print("That is not an option. Please try again.")
-        # Update CSV with current word count and timestamp before saving
+        #update CSV with new info after each loop
         document_info[0]["Word Count"] = str(helper_functions_read.get_word_count(document_content))
         document_info[0]["Last Edited"] = str(helper_functions_read.get_time())
         time_clean_functions.edit_info(document_info)

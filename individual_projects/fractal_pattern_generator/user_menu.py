@@ -5,7 +5,7 @@ import turtle
 
 #function named "main_menu":
 def main_menu():
-    t = None  # Initialize t before the loop
+    t = None #make t before the loop so it doesn't crash if it cannot find it
     #While true loop:
     while True:
         #ask the user if they want to draw a siperniski triangle or exit out of the program
