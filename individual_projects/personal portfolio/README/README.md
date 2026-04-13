@@ -18,7 +18,7 @@ This is a program that shows the four projects that I am most proud of. It shows
 - There is a button for closing the window as well.
 
 ## Installation instructions
-This program uses Python. None of the project uses any external libraries, so as long as the Programming drive is accessible, this should work fine. Note that this project should not be run in Github Codespaces since it uses a tkinter window, and Codespaces does not support this.
+This program uses Python. None of the projects featured uses any external libraries, so as long as the Programming drive is accessible, this should work fine. Note that this project should not be run in Github Codespaces since it uses a tkinter window, and Codespaces does not support this.
 
 ## Contributors
 - Valerie5801
