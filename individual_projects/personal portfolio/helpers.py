@@ -49,6 +49,10 @@ def run_program(root, label):
             gradebook.main_menu()
         elif current_project['value'] == "project_four":
             words.main_menu()
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        label.config(text=f"An error occurred: {str(e)}\nPlease check the terminal for details.")
 
     finally:
         #show the window

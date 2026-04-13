@@ -9,12 +9,20 @@ def add_grade(student):
     print("\nYou can only add a max of 6 grades to each student.")
     print("How many grades do you want to add?(please type as a whole number)")
     #make sure the user types in a number between 0 and 6
-    amount_grade = max(0, min(int(helper.check_num()), 6))
+    try:
+        amount_grade = max(0, min(int(helper.check_num()), 6))
+    except ValueError:
+        print("Invalid input. Setting to 0 grades.")
+        amount_grade = 0
 
     for i in range(amount_grade):
             print("\nType the percentage of the grade (don't type %)")
-            user_added_grade = int(helper.check_num())
-            student.add_grade(user_added_grade)
+            try:
+                user_added_grade = int(helper.check_num())
+                student.add_grade(user_added_grade)
+            except ValueError:
+                print("Invalid grade. Skipping this grade.")
+                continue
 
     return student
 

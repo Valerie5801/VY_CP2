@@ -1,13 +1,16 @@
 #VY 2nd Helper Functions for Simple Gradebook
 import csv
 from .classes import Student
+from pathlib import Path
 
 #function to save the CSV for first time when program is ran
 def save_csv():
     #try the following:
     try:
+        #get the path to the CSV file relative to this module
+        csv_path = Path(__file__).parent / "docs" / "gradebook.csv"
         #open the provided students list and set the mode to "r" for reading as sample:
-        with open("individual_projects/simple gradebook/docs/gradebook.csv", mode= "r") as sample:
+        with open(csv_path, mode= "r") as sample:
             #read sample and set it to the variable read_list
             read_list = csv.reader(sample)
             #make a variable that grabs the next value in the CSV reader
@@ -45,7 +48,8 @@ def save_csv():
 
 #function for rewriting the CSV again. This will be used every time the user makes a change to their library:
 def rewrite_csv(students):
-    with open("individual_projects/simple gradebook/docs/gradebook.csv", "w", newline='') as csvfile:
+    csv_path = Path(__file__).parent / "docs" / "gradebook.csv"
+    with open(csv_path, "w", newline='') as csvfile:
         writer = csv.writer(csvfile)   #read through list
         #write the header
         writer.writerow(['Name', 'ID', 'Average Score', 'Average Letter', 'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6'])
@@ -104,11 +108,11 @@ def check_num():
         #if the input is not a number, ask them again
         try:
             user_num = round(float(user_num), 2)
-        except:
+        except ValueError:
             print("That isn't a number. Please try again.")
+            continue
         #if it is a number, break out of the loop
-        else:
-            break
+        break
     #return the input
     return user_num
 
