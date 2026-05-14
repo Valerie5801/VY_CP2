@@ -9,3 +9,6 @@ def add(num1, num2):
     return total
 
 #have a function that goes through multiple steps
+def char_info():
+    char_list = []
+    item_list = []
